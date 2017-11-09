@@ -31,7 +31,7 @@ def mode(X):
         if d[key] > m[1]:
             m = (key, d[key])
             k = [key]
-        elif d[key] == m[1]
+        elif d[key] == m[1]:
             k.append(key)
 
     return k
