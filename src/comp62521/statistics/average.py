@@ -1,4 +1,3 @@
-
 def mean(X):
     n = len(X)
     if n > 0:
@@ -31,5 +30,8 @@ def mode(X):
     for key in d.keys():
         if d[key] > m[1]:
             m = (key, d[key])
+            k = [key]
+        elif d[key] == m[1]
+            k.append(key)
 
-    return [m[0]]
+    return k
