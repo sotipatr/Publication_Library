@@ -2,6 +2,7 @@ from os import path
 import unittest
 
 from comp62521.database import database
+from comp62521 import views
 
 class TestDatabase(unittest.TestCase):
 
@@ -146,13 +147,62 @@ class TestDatabase(unittest.TestCase):
             "incorrect year in result")
         self.assertEqual(data[0][1], 2,
             "incorrect number of authors in result")
-            
+
     def test_calculate_first_last(self):
-	    db = database.Database()
-	    self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
+        db = database.Database()
+        self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
         self.assertEqual(db.calculate_first_last("Piero Fraternali"), (0, 7))
-	    self.assertEqual(db.calculate_first_last("Stefano Ceri"), (86, 33))
-	    self.assertEqual(db.calculate_first_last("aaa"), (0, 0))
+        self.assertEqual(db.calculate_first_last("Stefano Ceri"), (86, 33))
+        self.assertEqual(db.calculate_first_last("aaa"), (0, 0))
+
+    def test_sorting(self):
+        db = database.Database()
+        self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
+
+        #Test cases fo publications summary
+        data = db.get_publication_summary()
+        #Assert for non empty
+        self.assertTrue(views.sorting(data, 1) != 0)
+        self.assertTrue(views.sorting(data, 2) != 0)
+        self.assertTrue(views.sorting(data, 3) != 0)
+        self.assertTrue(views.sorting(data, 4) != 0)
+        self.assertTrue(views.sorting(data, 5) != 0)
+        #Assert if sorting
+        self.assertNotEquals(views.sorting(data, 1),data)
+        self.assertNotEquals(views.sorting(data, 2),data)
+        self.assertNotEquals(views.sorting(data, 3), data)
+        self.assertNotEquals(views.sorting(data, 4), data)
+        self.assertNotEquals(views.sorting(data, 5), data)
+
+        #Test cases fo publications per year
+        data = db.get_publications_by_year()
+        #Assert for non empty
+        self.assertTrue(views.sorting(data, 1) != 0)
+        self.assertTrue(views.sorting(data, 2) != 0)
+        self.assertTrue(views.sorting(data, 3) != 0)
+        self.assertTrue(views.sorting(data, 4) != 0)
+        self.assertTrue(views.sorting(data, 5) != 0)
+        #Assert if sorting
+        self.assertNotEquals(views.sorting(data, 1),data)
+        self.assertNotEquals(views.sorting(data, 2),data)
+        self.assertNotEquals(views.sorting(data, 3), data)
+        self.assertNotEquals(views.sorting(data, 4), data)
+        self.assertNotEquals(views.sorting(data, 5), data)
+
+        #Test cases for author totals by year
+        data = db.get_author_totals_by_year()
+        #Assert for non empty
+        self.assertTrue(views.sorting(data, 1) != 0)
+        self.assertTrue(views.sorting(data, 2) != 0)
+        self.assertTrue(views.sorting(data, 3) != 0)
+        self.assertTrue(views.sorting(data, 4) != 0)
+        self.assertTrue(views.sorting(data, 5) != 0)
+        #Assert if sorting
+        self.assertNotEquals(views.sorting(data, 1),data)
+        self.assertNotEquals(views.sorting(data, 2),data)
+        self.assertNotEquals(views.sorting(data, 3), data)
+        self.assertNotEquals(views.sorting(data, 4), data)
+        self.assertNotEquals(views.sorting(data, 5), data)
 
 if __name__ == '__main__':
     unittest.main()
