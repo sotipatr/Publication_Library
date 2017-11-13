@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
+
+<h1>{{ args.title }}</h1>
+<form action="/stats" method="get" data-ajax="false" onSubmit="validateForm(this)">
+	Author Name:<br>
+	<input type="text" name="author">
+	<input type="submit" value="Submit">
+	<h3>	Stats for {{ args.author }} </h3> 
+<a>Number of times first author = {{ args.first }} </a> <br>
+<a>	Number of times last author = {{ args.last }} </a>
+</form>
+
+
+
+
+
+<script>
+function validateForm(form){
+  author = form["author"].value;
+  
+  if (author == ""){
+    alert("Please provide an Author");
+    return false;
+  }
+  return true;
+}
+</script>
+{% endblock %}

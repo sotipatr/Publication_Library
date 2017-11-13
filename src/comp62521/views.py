@@ -57,6 +57,20 @@ def showAverages():
     args['tables'] = tables
     return render_template("averages.html", args=args)
 
+@app.route("/stats")
+def showFirstLast():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Stats"
+    author = str(request.args.get("author"))
+    first,last = db.calculate_first_last(author)
+    args["author"]=author
+    args["first"] = first
+    args["last"] = last
+    return render_template("stats.html", args=args)
+
+
 @app.route("/coauthors")
 def showCoAuthors():
     dataset = app.config['DATASET']
