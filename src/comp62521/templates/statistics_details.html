@@ -7,8 +7,10 @@
 <table>
   <thead>
     <tr>
+    {% set i=0 %}
     {% for column in args.data[0] %}
-      <th>{{ column }}</th>
+      <th><a href="/statisticsdetails/{{args.id}}?col={{i}}">{{ column }}</a></th>
+      {% set i=i+1 %}
     {% endfor %}
     </tr>
   </thead>

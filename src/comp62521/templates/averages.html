@@ -2,13 +2,16 @@
 {% block title %}{{ args.title }}{% endblock %}
 {% block content %}
 <h1>{{ args.title }}</h1>
+{% set j=0 %}
 {% for table in args.tables %}
 <h2>{{ table.title }}</h2>
 <table>
   <thead>
     <tr>
+      {% set i=0 %}
       {% for column in table.header %}
-        <th>{{ column }}</th>
+        <th><a href="/averages?col={{i}}&table={{j}}">{{ column }}</a></th>
+        {% set i=i+1 %}
       {% endfor %}
     </tr>
   </thead>
@@ -23,5 +26,6 @@
   </tbody>
 </table>
 <br/>
+{% set j=j+1 %}
 {% endfor %}
 {% endblock %}
