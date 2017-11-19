@@ -210,7 +210,8 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(db.calculate_searchAuthors("testName"),(0,0,0,0,0,0))
 
         #Test case1: Number of publications
-        self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,0,0,0,0,0))
+        #self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,0,0,0,0,0))
+
         #Test case2: Number of conference papers
         self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,0,0,0,0))
 
