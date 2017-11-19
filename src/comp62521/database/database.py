@@ -63,16 +63,22 @@ class Database:
     def get_all_authors(self):
         return self.author_idx.keys()
 
-    def calculate_first_last(self,author):
-        first = 0
-        last = 0
+    def calculate_first_last_sole(self):
+        header = ("Author", "First Author",
+                  "Last Author", "Sole Author")
+
+        astats = [[0, 0, 0] for _ in range(len(self.authors))]
         for p in self.publications:
-                
-            if self.authors[p.authors[0]].name==author:
-                first += 1
-            if self.authors[p.authors[len(p.authors)-1]].name==author:
-                last += 1
-        return (first,last)
+            for a in p.authors:
+                if p.authors[0] == a:
+                    astats [a][0] += 1
+                if p.authors[len(p.authors)-1] == a:
+                    astats [a][1] += 1
+                if len(p.authors) == 1:
+                    astats [a][2] += 1
+        data = [[self.authors[i].name] + astats[i]
+            for i in range(len(astats))]
+        return (header, data)
 
     def get_coauthor_data(self, start_year, end_year, pub_type):
         coauthors = {}
