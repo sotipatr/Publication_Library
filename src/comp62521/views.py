@@ -46,6 +46,23 @@ def showFirstLast():
     args["last"] = last
     return render_template("stats.html", args=args)
 
+@app.route("/searchAuthor")
+def showSearchAuthor():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Search for Author"
+    author = str(request.args.get("author"))
+    publications,conference,journals,chapters,books,coauthors,first,last=db.calculate_searchAuthors(author)
+    args["publications"]=publications
+    args["conference"]=conference
+    args["journals"]=journals
+    args["chapters"]=chapters
+    args["books"]=books
+    args["coauthors"]=coauthors
+    args["first"]=first
+    args["last"]=last
+    return render_template("searchAuthor.html",args=args)
 
 @app.route("/averages")
 def showAverages():
