@@ -213,7 +213,10 @@ class TestDatabase(unittest.TestCase):
         #self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,0,0,0,0,0))
 
         #Test case2: Number of conference papers
-        self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,0,0,0,0))
+        #self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,0,0,0,0))
+
+        #Test case3: Number of journals
+        self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,3,0,0,0))
 
 if __name__ == '__main__':
     unittest.main()
