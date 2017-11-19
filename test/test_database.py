@@ -156,7 +156,7 @@ class TestDatabase(unittest.TestCase):
                                                           [[u'AUTHOR1', 1, 1, 0], [u'AUTHOR2', 0, 1, 0],
                                                            [u'AUTHOR3', 0, 1, 0], [u'AUTHOR4', 2, 0, 0]]))
 
-        #testcase2 database = sprint-2-acceptance-2.xml
+        #testcase2 database = sprint-2-acceptance-2.xml 
         self.assertTrue(db.read(path.join(self.data_dir, "sprint-2-acceptance-2.xml")))
         self.assertEqual(db.calculate_first_last_sole(), (('Author', 'First Author', 'Last Author', 'Sole Author'),
                                                           [[u'AUTHOR1', 2, 0, 1], [u'AUTHOR3', 0, 0, 0],
