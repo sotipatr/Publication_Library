@@ -312,6 +312,9 @@ class Database:
             for y in ystats ]
         return (header, data)
 
+    def calculate_searchAuthors(self,author):
+        return (0,0,0,0,0,0)    
+
     def add_publication(self, pub_type, title, year, authors):
         if year == None or len(authors) == 0:
             print "Warning: excluding publication due to missing information"
