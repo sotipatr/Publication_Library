@@ -225,7 +225,10 @@ class TestDatabase(unittest.TestCase):
         #self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,3,0,1,0,0,0))
 
         #Test case6: Number of co-Authors
-        self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,3,0,1,15,0,0))
+        #self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,3,0,1,15,0,0))
+
+        #Test case7: Number of first
+        self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,3,0,1,15,3,0))
 
 if __name__ == '__main__':
     unittest.main()
