@@ -39,11 +39,7 @@ def showFirstLast():
     db = app.config['DATABASE']
     args = {"dataset":dataset, "id":"stats"}
     args["title"] = "Stats"
-    author = str(request.args.get("author"))
-    first,last = db.calculate_first_last(author)
-    args["author"]=author
-    args["first"] = first
-    args["last"] = last
+    args["data"] = db.calculate_first_last_sole()
     return render_template("stats.html", args=args)
 
 @app.route("/searchAuthor")
