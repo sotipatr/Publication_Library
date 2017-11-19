@@ -314,12 +314,15 @@ class Database:
 
     def calculate_searchAuthors(self,author):
         publications = 0
+        conference_papers=0
         for p in self.publications:
             for a in p.authors:
                 if self.authors[a].name==author:
                     publications+=1
+                    if p.pub_type==0:
+                        conference_papers+=1
 
-        return (publications,0,0,0,0,0)    
+        return (publications,conference_papers,0,0,0,0)    
 
     def add_publication(self, pub_type, title, year, authors):
         if year == None or len(authors) == 0:
