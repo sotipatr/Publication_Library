@@ -316,6 +316,7 @@ class Database:
         publications = 0
         conference_papers=0
         journals = 0
+        books=0
         for p in self.publications:
             for a in p.authors:
                 if self.authors[a].name==author:
@@ -324,8 +325,10 @@ class Database:
                         conference_papers+=1
                     if p.pub_type==1:
                         journals+=1
+                    if p.pub_type==2:
+                        books+=1
 
-        return (publications,conference_papers,journals,0,0,0)    
+        return (publications,conference_papers,journals,0,books,0,0,0)    
 
     def add_publication(self, pub_type, title, year, authors):
         if year == None or len(authors) == 0:
