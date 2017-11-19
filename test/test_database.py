@@ -232,6 +232,9 @@ class TestDatabase(unittest.TestCase):
 
         #Test case8: Number of last
         self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,3,0,1,15,3,5))
+        
+        #Test case8: Test final
+        self.assertEqual(db.calculate_searchAuthors("Stefano Ceri"),(218,100,94,18,6,230,86,33))
 
 if __name__ == '__main__':
     unittest.main()
