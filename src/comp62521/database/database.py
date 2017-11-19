@@ -327,9 +327,12 @@ class Database:
         flag = True
         lista= []
         first=0
+        last=0
         for p in self.publications:
             if self.authors[p.authors[0]].name == author:
                 first +=1
+            if self.authors[p.authors[len(p.authors)-1]].name == author:
+                last +=1
             for a in p.authors:
                 if str(self.authors[a].name)==author:
                     publications+=1
@@ -344,7 +347,7 @@ class Database:
                           lista.append(str(self.authors[i].name)) 
                           coauthors+=1
                 
-        return (publications,conference_papers,journals,0,books,coauthors,first,0)    
+        return (publications,conference_papers,journals,0,books,coauthors,first,last)    
 
     def add_publication(self, pub_type, title, year, authors):
         if year == None or len(authors) == 0:
