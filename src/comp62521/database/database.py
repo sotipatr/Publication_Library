@@ -69,13 +69,16 @@ class Database:
 
         astats = [[0, 0, 0] for _ in range(len(self.authors))]
         for p in self.publications:
-            for a in p.authors:
-                if p.authors[0] == a:
-                    astats [a][0] += 1
-                if p.authors[len(p.authors)-1] == a:
-                    astats [a][1] += 1
+                if len(p.authors)!= 1:
+                   for a in p.authors:
+                       if p.authors[0] == a:
+                           astats [a][0] += 1
+                       if p.authors[len(p.authors)-1] == a:
+                            astats [a][1] += 1
                 if len(p.authors) == 1:
-                    astats [a][2] += 1
+                    for a in p.authors:
+                        if p.authors[0] == a:
+                            astats [a][2] += 1
         data = [[self.authors[i].name] + astats[i]
             for i in range(len(astats))]
         return (header, data)
