@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
+
+<h1>{{ args.title }}</h1>
+<form action="/searchAuthor" method="get" data-ajax="false" onSubmit="validateForm(this)">
+	Author Name:<br>
+	<input type="text" name="author">
+	<input type="submit" value="Submit">
+
+     <table>
+    	<thead>
+    		<tr>
+    			<th>Number of publications</th>
+    			<th>Number of conference papers</th>
+    			<th>Number of journals</th>
+    			<th>Number of book chapters</th>
+    			<th>Number of books</th>
+    			<th>Number of co-authors</th>
+    			<th>First author</th>
+    			<th>Last Author</th>
+    		</tr>
+    	
+    		<tr> <td>{{args.publications}} </td>
+    		<td> {{args.conference}}</td> 
+    		<td> {{args.journals}} </td>
+    		<td> {{args.chapters}} </td>
+    		<td> {{args.books}} </td>
+    		<td> {{args.coauthors}} </td>
+    		<td> {{args.first}} </td>
+    		<td> {{args.last}} </td></tr>
+    	</thead>
+    </table>
+ 
+
+  </form>
+
+
+  
+<script>
+function validateForm(form){
+  author = form["author"].value;
+  
+  if (author == ""){
+    alert("Please provide an Author");
+    return false;
+  }
+  return true;
+}
+</script>
+{% endblock %}
