@@ -209,5 +209,8 @@ class TestDatabase(unittest.TestCase):
         self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
         self.assertEqual(db.calculate_searchAuthors("testName"),(0,0,0,0,0,0))
 
+        #Test case1: Number of publications
+        self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,0,0,0,0,0))
+
 if __name__ == '__main__':
     unittest.main()
