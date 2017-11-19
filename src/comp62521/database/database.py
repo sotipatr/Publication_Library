@@ -313,7 +313,13 @@ class Database:
         return (header, data)
 
     def calculate_searchAuthors(self,author):
-        return (0,0,0,0,0,0)    
+        publications = 0
+        for p in self.publications:
+            for a in p.authors:
+                if self.authors[a].name==author:
+                    publications+=1
+
+        return (publications,0,0,0,0,0)    
 
     def add_publication(self, pub_type, title, year, authors):
         if year == None or len(authors) == 0:
