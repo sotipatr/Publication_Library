@@ -204,5 +204,10 @@ class TestDatabase(unittest.TestCase):
         self.assertEquals(views.sorting(data, 4), data)
         self.assertEquals(views.sorting(data, 5), data)'''
 
+    def test_searchAuthor(self):
+        db = database.Database()
+        self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
+        self.assertEqual(database.calculate_searchAuthors("testName"),(0,0,0,0,0,0))
+
 if __name__ == '__main__':
     unittest.main()
