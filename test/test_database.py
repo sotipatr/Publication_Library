@@ -150,10 +150,10 @@ class TestDatabase(unittest.TestCase):
 
     def test_calculate_first_last(self):
         db = database.Database()
-        self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
-        self.assertEqual(db.calculate_first_last("Piero Fraternali"), (0, 7))
-        self.assertEqual(db.calculate_first_last("Stefano Ceri"), (86, 33))
-        self.assertEqual(db.calculate_first_last("aaa"), (0, 0))
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint-2-acceptance-1.xml")))
+        self.assertEqual(db.calculate_first_last_sole(), (('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                          [[u'AUTHOR1', 1, 1, 0], [u'AUTHOR2', 0, 1, 0],
+                                                           [u'AUTHOR3', 0, 1, 0], [u'AUTHOR4', 2, 0, 0]]))
 
     '''def test_sorting(self):
         db = database.Database()
