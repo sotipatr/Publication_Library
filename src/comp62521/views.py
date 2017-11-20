@@ -16,8 +16,7 @@ def format_data(data):
             result.append((fmt % item).rstrip('0').rstrip('.'))
     return result
 
-
-def sorting(data, no_col):
+def sorting(data, no_col, stat):
 	global status_2
 	data_sorted =[]
 	data_sorted.append(data[0])
@@ -30,8 +29,12 @@ def sorting(data, no_col):
 	elif (status_2 == 1):
 		status_2 = 0
 		data_sorted.append(sorted(data[1], key=itemgetter(no_col) , reverse=False))
+
+	if (stat == 1):
+		return data_sorted[0], data_sorted[1]
 	
-	return (data_sorted[0], data_sorted[1])
+	else:
+		return (data_sorted[0], data_sorted[1])
 
 @app.route("/stats")
 def showFirstLast():
@@ -114,7 +117,7 @@ def showAverages():
 	get_from_db.append(lista)
 	lista = []
     if (no_col!=None) and (no_table!=None):
-		y = sorting(get_from_db[int(no_table)], int(no_col))
+		y = sorting(get_from_db[int(no_table)], int(no_col), 0)
 		tables[int(no_table)]["rows"] = y[1]
 		
     args['tables'] = tables
@@ -152,7 +155,7 @@ def showCoAuthors():
     args["pub_str"] = PUB_TYPES[pub_type]
 
     if (no_col!=None):
-		args["data"] = sorting(get_from_db, int(no_col))
+		args["data"] = sorting(get_from_db, int(no_col), 0)
     elif (no_col==None):
 		args["data"] = get_from_db
 
@@ -170,15 +173,17 @@ def showPublicationSummary(status):
     db = app.config['DATABASE']
     args = {"dataset":dataset, "id":status}
     no_col = request.args.get('col')
+    flag_author = 0
+    app.debug = True
     
     if (status == "publication_summary"):
         args["title"] = "Publication Summary"
 	get_from_db = db.get_publication_summary()
-	
+		
     if (status == "publication_author"):
         args["title"] = "Author Publication"
         get_from_db = db.get_publications_by_author()
-
+	flag_author = 1
     if (status == "publication_year"):
         args["title"] = "Publication by Year"
         get_from_db = db.get_publications_by_year()
@@ -188,7 +193,8 @@ def showPublicationSummary(status):
         get_from_db = db.get_author_totals_by_year()
 	
     if (no_col!=None):
-		args["data"] = sorting(get_from_db, int(no_col))
+		args["data"] = sorting(get_from_db, int(no_col), 0)
+		print(args["data"])
     elif (no_col==None):
 		args["data"] = get_from_db
     return render_template('statistics_details.html', args=args)
