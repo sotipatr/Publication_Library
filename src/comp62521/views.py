@@ -23,6 +23,8 @@ def sort_by_surname(data):
 			temp_name[-1] = temp_name[-2] + temp_name[-1]
 		(data[1][i]).append(temp_name[-1])
 	sorted_tuple = sorting(data, -1, 1)
+	for i in sorted_tuple[1]:
+		i.pop()	
 	return sorted_tuple[1][0]
 
 def sorting(data, no_col, stat):

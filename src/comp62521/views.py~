@@ -22,7 +22,8 @@ def sort_by_surname(data):
 		if(temp_name[-1].isdigit() == True):
 			temp_name[-1] = temp_name[-2] + temp_name[-1]
 		(data[1][i]).append(temp_name[-1])
-	return data[1][0]
+	sorted_tuple = sorting(data, -1, 1)
+	return sorted_tuple[1][0]
 
 def sorting(data, no_col, stat):
 	global status_2
