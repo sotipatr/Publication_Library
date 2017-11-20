@@ -243,7 +243,7 @@ class TestDatabase(unittest.TestCase):
 	#Assert for non empty
         self.assertTrue(views.sort_by_surname(data) != 0)
 	data = db.get_publications_by_author()
-	self.assertEqual([u'Stefano Ceri', 100, 94, 6, 18, 218, u'Ceri'],views.sort_by_surname(data))
+	self.assertEqual([u'Stefano Ceri', 0, 0, 2, 1, 3, u'Ceri'],views.sort_by_surname(data))
 
 if __name__ == '__main__':
     unittest.main()
