@@ -238,12 +238,20 @@ class TestDatabase(unittest.TestCase):
         self.assertTrue(views.sorting(data, 1, 0) != 0)
         self.assertEquals(data2,views.sorting(data, 0, 0))
 
-        #Test case1: Test for sort_by_surname
+        '''#Test case2: Test for sort_by_surname
 	data = db.get_publications_by_author()
 	#Assert for non empty
         self.assertTrue(views.sort_by_surname(data) != 0)
 	data = db.get_publications_by_author()
-	self.assertEqual([u'Stefano Ceri', 0, 0, 2, 1, 3, u'Ceri'],views.sort_by_surname(data))
+	self.assertEqual([u'Stefano Ceri', 0, 0, 2, 1, 3, u'Ceri'],views.sort_by_surname(data))'''
+
+	#Test case3: Test for sort_by_surname (II)
+	views.status_2 = 0
+	data = db.get_publications_by_author()
+	#Assert for non empty
+        self.assertTrue(views.sort_by_surname(data) != 0)
+	data = db.get_publications_by_author()
+	self.assertEqual([u'Ian Arundale', 0, 1, 0, 0, 1, u'Arundale'],views.sort_by_surname(data))
 
 if __name__ == '__main__':
     unittest.main()
