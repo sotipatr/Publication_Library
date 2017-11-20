@@ -25,7 +25,7 @@ def sort_by_surname(data):
 	sorted_tuple = sorting(data, -1, 1)
 	for i in sorted_tuple[1]:
 		i.pop()	
-	return sorted_tuple[1][0]
+	return (sorted_tuple[0], sorted_tuple[1])
 
 def sorting(data, no_col, stat):
 	global status_2
@@ -204,8 +204,11 @@ def showPublicationSummary(status):
         args["title"] = "Author by Year"
         get_from_db = db.get_author_totals_by_year()
 	
-    if (no_col!=None):
-		args["data"] = sorting(get_from_db, int(no_col), 0)
-    elif (no_col==None):
+    if (no_col != None):
+		if (flag_author == 1 and int(no_col) == 0):
+			args["data"] = sort_by_surname(get_from_db)
+		else:
+			args["data"] = sorting(get_from_db, int(no_col), 0)
+    elif (no_col == None):
 		args["data"] = get_from_db
     return render_template('statistics_details.html', args=args)
