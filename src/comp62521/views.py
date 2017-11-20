@@ -16,6 +16,14 @@ def format_data(data):
             result.append((fmt % item).rstrip('0').rstrip('.'))
     return result
 
+def sort_by_surname(data):
+	for i in range(0,len(data[1])):
+		temp_name = (data[1][i][0]).split()
+		if(temp_name[-1].isdigit() == True):
+			temp_name[-1] = temp_name[-2] + temp_name[-1]
+		(data[1][i]).append(temp_name[-1])
+	return data[1][0]
+
 def sorting(data, no_col, stat):
 	global status_2
 	data_sorted =[]
