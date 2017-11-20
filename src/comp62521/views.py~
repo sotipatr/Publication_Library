@@ -184,7 +184,6 @@ def showPublicationSummary(status):
         args["title"] = "Author Publication"
         get_from_db = db.get_publications_by_author()
 	flag_author = 1
-
     if (status == "publication_year"):
         args["title"] = "Publication by Year"
         get_from_db = db.get_publications_by_year()
@@ -195,6 +194,7 @@ def showPublicationSummary(status):
 	
     if (no_col!=None):
 		args["data"] = sorting(get_from_db, int(no_col), 0)
+		print(args["data"])
     elif (no_col==None):
 		args["data"] = get_from_db
     return render_template('statistics_details.html', args=args)

@@ -230,13 +230,20 @@ class TestDatabase(unittest.TestCase):
     def test_sort_by_surname(self):
         db = database.Database()
         self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample2.xml")))
-	#views.status_2 = 0
-        #Test case1: Test 
+
+        #Test case1: Test for sorting
 	data = db.get_publications_by_author()
 	data2 = (('Author', 'Number of conference papers', 'Number of journals', 'Number of books', 'Number of book chapers', 'Total'), [[u'Alvaro A. A. Fernandes', 0, 1, 0, 0, 1], [u'Bernadette Farias Lscio', 0, 1, 0, 0, 1], [u'Carlo Batini', 0, 0, 1, 0, 1], [u'Chenjuan Guo', 0, 1, 0, 0, 1], [u'Cornelia Hedeler', 0, 1, 0, 0, 1], [u'Darren Lunn', 1, 0, 0, 0, 1], [u'Ian Arundale', 0, 1, 0, 0, 1], [u'Khalid Belhajjame', 0, 1, 0, 0, 1], [u'Lu Mao', 0, 1, 0, 0, 1], [u'Norman W. Paton', 0, 1, 0, 0, 1], [u'Piero Fraternali', 0, 0, 1, 0, 1], [u'Raghu Ramakrishnan', 0, 0, 0, 1, 1], [u'Sean Bechhofer', 1, 0, 0, 0, 1], [u'Shamkant B. Navathe', 0, 0, 1, 0, 1], [u'Simon Harper', 1, 0, 0, 0, 1], [u'Stefano Ceri', 0, 0, 2, 1, 3], [u'Suzanne M. Embury', 0, 1, 0, 0, 1]])
 	#Assert for non empty
         self.assertTrue(views.sorting(data, 1, 0) != 0)
         self.assertEquals(data2,views.sorting(data, 0, 0))
+
+        #Test case1: Test for sort_by_surname
+	data = db.get_publications_by_author()
+	#Assert for non empty
+        self.assertTrue(views.sort_by_surname(data) != 0)
+	data = db.get_publications_by_author()
+	self.assertEqual([u'Stefano Ceri', 100, 94, 6, 18, 218, u'Ceri'],views.sort_by_surname(data))
 
 if __name__ == '__main__':
     unittest.main()
