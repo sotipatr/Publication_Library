@@ -253,13 +253,31 @@ class TestDatabase(unittest.TestCase):
 	data = db.get_publications_by_author()
 	self.assertEqual([u'Ian Arundale', 0, 1, 0, 0, 1, u'Arundale'],views.sort_by_surname(data))'''
 
-	#Test case4: Test for sort_by_surname (III)
+	'''#Test case4: Test for sort_by_surname (III)
 	views.status_2 = 0
 	data = db.get_publications_by_author()
 	#Assert for non empty
         self.assertTrue(views.sort_by_surname(data) != 0)
 	data = db.get_publications_by_author()
-	self.assertEqual([u'Ian Arundale', 0, 1, 0, 0, 1],views.sort_by_surname(data))
+	self.assertEqual([u'Ian Arundale', 0, 1, 0, 0, 1],views.sort_by_surname(data))'''
+
+	#Test case5: Final test for sort_by_surname - Publications by Author (IV)
+	views.status_2 = 1
+	data = db.get_publications_by_author()
+	#Assert for non empty
+        self.assertTrue(views.sort_by_surname(data) != 0)
+	data = db.get_publications_by_author()
+	data2 = (('Author', 'Number of conference papers', 'Number of journals', 'Number of books', 'Number of book chapers', 'Total'), [[u'Raghu Ramakrishnan', 0, 0, 0, 1, 1], [u'Norman W. Paton', 0, 1, 0, 0, 1], [u'Shamkant B. Navathe', 0, 0, 1, 0, 1], [u'Lu Mao', 0, 1, 0, 0, 1], [u'Darren Lunn', 1, 0, 0, 0, 1], [u'Bernadette Farias Lscio', 0, 1, 0, 0, 1], [u'Cornelia Hedeler', 0, 1, 0, 0, 1], [u'Simon Harper', 1, 0, 0, 0, 1], [u'Chenjuan Guo', 0, 1, 0, 0, 1], [u'Piero Fraternali', 0, 0, 1, 0, 1], [u'Alvaro A. A. Fernandes', 0, 1, 0, 0, 1], [u'Suzanne M. Embury', 0, 1, 0, 0, 1], [u'Stefano Ceri', 0, 0, 2, 1, 3], [u'Khalid Belhajjame', 0, 1, 0, 0, 1], [u'Sean Bechhofer', 1, 0, 0, 0, 1], [u'Carlo Batini', 0, 0, 1, 0, 1], [u'Ian Arundale', 0, 1, 0, 0, 1]])
+	self.assertEqual(data2, views.sort_by_surname(data))
+
+	#Test case5: Final test for sort_by_surname - Co-Authors (V)
+	views.status_2 = 1
+	data = db.get_coauthor_data(db.min_year, db.max_year, 4)
+	#Assert for non empty
+        self.assertTrue(views.sort_by_surname(data) != 0)
+	data = db.get_coauthor_data(db.min_year, db.max_year, 4)
+	data2 = (('Author', 'Co-Authors'), [[u'Raghu Ramakrishnan (1)', u'Stefano Ceri (4)'], [u'Norman W. Paton (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Shamkant B. Navathe (2)', u'Stefano Ceri (4), Carlo Batini (2)'], [u'Lu Mao (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Darren Lunn (2)', u'Simon Harper (2), Sean Bechhofer (2)'], [u'Bernadette Farias Lscio (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Cornelia Hedeler (8)', u'Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Simon Harper (2)', u'Darren Lunn (2), Sean Bechhofer (2)'], [u'Chenjuan Guo (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Piero Fraternali (1)', u'Stefano Ceri (4)'], [u'Alvaro A. A. Fernandes (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Suzanne M. Embury (8)'], [u'Suzanne M. Embury (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8)'], [u'Stefano Ceri (4)', u'Piero Fraternali (1), Carlo Batini (2), Shamkant B. Navathe (2), Raghu Ramakrishnan (1)'], [u'Khalid Belhajjame (8)', u'Cornelia Hedeler (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Sean Bechhofer (2)', u'Simon Harper (2), Darren Lunn (2)'], [u'Carlo Batini (2)', u'Stefano Ceri (4), Shamkant B. Navathe (2)'], [u'Ian Arundale (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)']])
+	self.assertEqual(data2, views.sort_by_surname(data))
 
 if __name__ == '__main__':
     unittest.main()

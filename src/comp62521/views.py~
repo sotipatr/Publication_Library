@@ -169,9 +169,13 @@ def showCoAuthors():
     args["end_year"] = end_year
     args["pub_str"] = PUB_TYPES[pub_type]
 
-    if (no_col!=None):
-		args["data"] = sorting(get_from_db, int(no_col), 0)
-    elif (no_col==None):
+    if (no_col != None):
+		if (int(no_col) == 0):
+			args["data"] = sort_by_surname(get_from_db)
+			print(args["data"])
+		else:
+			args["data"] = sorting(get_from_db, int(no_col), 0)
+    elif (no_col == None):
 		args["data"] = get_from_db
 
     return render_template("coauthors.html", args=args)
@@ -211,6 +215,7 @@ def showPublicationSummary(status):
     if (no_col != None):
 		if (flag_author == 1 and int(no_col) == 0):
 			args["data"] = sort_by_surname(get_from_db)
+			print(args["data"])
 		else:
 			args["data"] = sorting(get_from_db, int(no_col), 0)
     elif (no_col == None):
