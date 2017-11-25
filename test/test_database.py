@@ -193,8 +193,15 @@ class TestDatabase(unittest.TestCase):
         #Test case5: Test sorting of column book_chapter
         self.assertNotEquals(data,views.sorting(data, 5))
         self.assertEquals(data,views.sorting(data, 5))'''
-
-
+    
+    def test_calculate_authors_details(self):
+        db = database.Database()
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task1_acc1.xml")))
+        self.assertEqual(db.calculate_authors_details(),(('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                         ('Journals', 'Conference Papers','Books', 'Book Chapters'),
+                                                         ['AUTHOR1',1,0,0,0,1,0,0,0,0,0,0,0]
+                                                         ['AUTHOR2',1,0,0,0,1,0,0,0,1,0,0,0]))
+    
     def test_searchAuthor(self):
         db = database.Database()
         self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
