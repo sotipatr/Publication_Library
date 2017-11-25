@@ -119,6 +119,15 @@ class Database:
                     else:
                         if i.name==self.authors[p.authors[0]].name:
                             author[9]+=1
+                if p.pub_type==3:
+                    if len(p.authors)!= 1:
+                        if i.name==self.authors[p.authors[0]].name:
+                            author[10]+=1
+                        if i.name==self.authors[p.authors[len(p.authors)-1]].name:
+                            author[11]+=1
+                    else:
+                        if i.name==self.authors[p.authors[0]].name:
+                            author[12]+=1
             data.append(author)
         return (header,subheader,data)
 
