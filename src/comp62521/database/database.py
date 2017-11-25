@@ -88,8 +88,23 @@ class Database:
         header=("Author", "First Author",
                   "Last Author", "Sole Author")
         subheader=('Journals', 'Conference Papers','Books', 'Book Chapters')
-        return (header,subheader,[['AUTHOR1',1,1,0,0,0,0,0,0,0,0,0,0],
-                                   ['AUTHOR2',1,1,1,0,0,0,0,0,0,0,0,0]])
+        data=[]
+        for i in self.authors:
+            author=[str(i.name),0,0,0,0,0,0,0,0,0,0,0,0]
+            for p in self.publications:
+                if p.pub_type==1:
+                    if len(p.authors)!= 1:
+                        if i.name==self.authors[p.authors[0]].name:
+                            author[1]+=1
+                        if i.name==self.authors[p.authors[len(p.authors)-1]].name:
+                            author[2]+=1
+                    else:
+                        if i.name==self.authors[p.authors[0]].name:
+                            author[3]+=1
+            data.append(author)
+        return (header,subheader,data)
+
+
 
     def get_coauthor_data(self, start_year, end_year, pub_type):
         coauthors = {}
