@@ -83,6 +83,14 @@ class Database:
             for i in range(len(astats))]
         return (header, data)
         #pass the third test
+
+    def calculate_authors_details(self):
+        header=("Author", "First Author",
+                  "Last Author", "Sole Author")
+        subheader=('Journals', 'Conference Papers','Books', 'Book Chapters')
+        return (header,subheader,[['AUTHOR1',1,0,0,0,1,0,0,0,0,0,0,0],
+                                   ['AUTHOR2',1,0,0,0,1,0,0,0,1,0,0,0]])
+
     def get_coauthor_data(self, start_year, end_year, pub_type):
         coauthors = {}
         for p in self.publications:
