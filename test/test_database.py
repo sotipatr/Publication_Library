@@ -211,6 +211,11 @@ class TestDatabase(unittest.TestCase):
                                                          ('Journals', 'Conference Papers','Books', 'Book Chapters'),
                                                          [['AUTHOR1',0,0,0,1,1,1,0,0,0,0,0,0],
                                                          ['AUTHOR2',0,0,0,1,1,1,0,0,0,0,0,0]]))
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task1_acc4.xml")))
+        self.assertEqual(db.calculate_authors_details(),(('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                         ('Journals', 'Conference Papers','Books', 'Book Chapters'),
+                                                         [['AUTHOR1',0,0,0,0,0,0,1,1,1,0,0,0],
+                                                         ['AUTHOR2',0,0,0,0,0,0,1,1,1,0,0,0]]))
     
     def test_searchAuthor(self):
         db = database.Database()
