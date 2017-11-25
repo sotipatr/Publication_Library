@@ -88,8 +88,8 @@ class Database:
         header=("Author", "First Author",
                   "Last Author", "Sole Author")
         subheader=('Journals', 'Conference Papers','Books', 'Book Chapters')
-        return (header,subheader,[['AUTHOR1',1,0,0,0,1,0,0,0,0,0,0,0],
-                                   ['AUTHOR2',1,0,0,0,1,0,0,0,1,0,0,0]])
+        return (header,subheader,[['AUTHOR1',1,1,0,0,0,0,0,0,0,0,0,0],
+                                   ['AUTHOR2',1,1,1,0,0,0,0,0,0,0,0,0]])
 
     def get_coauthor_data(self, start_year, end_year, pub_type):
         coauthors = {}
