@@ -1,0 +1,90 @@
+<dblp>
+<incollection>
+    <author>AUTHOR1</author>
+    <author>AUTHOR2</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</incollection>
+<incollection>
+    <author>AUTHOR2</author>
+    <author>AUTHOR1</author>
+    <title>PUBLICATION2</title>
+    <year>9999</year>
+</incollection>
+<incollection>
+    <author>AUTHOR2</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</incollection>
+<incollection>
+    <author>AUTHOR1</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</incollection>
+<book>
+    <author>AUTHOR1</author>
+    <author>AUTHOR2</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</book>
+<book>
+    <author>AUTHOR2</author>
+    <author>AUTHOR1</author>
+    <title>PUBLICATION2</title>
+    <year>9999</year>
+</book>
+<book>
+    <author>AUTHOR2</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</book>
+<book>
+    <author>AUTHOR1</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</book>
+<article>
+    <author>AUTHOR1</author>
+    <author>AUTHOR2</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</article>
+<article>
+    <author>AUTHOR2</author>
+    <author>AUTHOR1</author>
+    <title>PUBLICATION2</title>
+    <year>9999</year>
+</article>
+<article>
+    <author>AUTHOR2</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</article>
+<article>
+    <author>AUTHOR1</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</article>
+<inproceedings>
+    <author>AUTHOR1</author>
+    <author>AUTHOR2</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</inproceedings>
+<inproceedings>
+    <author>AUTHOR2</author>
+    <author>AUTHOR1</author>
+    <title>PUBLICATION2</title>
+    <year>9999</year>
+</inproceedings>
+<inproceedings>
+    <author>AUTHOR2</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</inproceedings>
+<inproceedings>
+    <author>AUTHOR1</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</inproceedings>
+</dblp>
