@@ -78,6 +78,27 @@ def showSearchAuthor():
     args["last"]=last
     return render_template("searchAuthor.html",args=args)
 
+@app.route("/authordetails")
+def showAuthorDetails():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Authors' Publications by Type"
+    header,subheader,data1=db.calculate_authors_details()
+    data=[]
+    for i in range(len(data1)):
+    	temp=[]
+    	for j in range(0,13):
+    		temp.append(data1[i][j])
+    		if j % 3 == 0 and j != 0:
+    			temp.append(' ')
+    	data.append(temp)
+    args["header"]=header[1:]
+    args["author"]=header[0]
+    args["subheader"]=subheader
+    args["data"] = data
+    return render_template("authordetails.html", args=args)
+
 @app.route("/averages")
 def showAverages():
     dataset = app.config['DATASET']
