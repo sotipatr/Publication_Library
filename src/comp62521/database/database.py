@@ -94,8 +94,20 @@ class Database:
         flag = True
         lista = []
         first = 0
+        Fconference_papers = 0
+        Fjournals = 0
+        Fbooks = 0
+        Fbook_chapters = 0
         last = 0
+        Lconference_papers = 0
+        Ljournals = 0
+        Lbooks = 0
+        Lbook_chapters = 0
         sole = 0
+        Sconference_papers = 0
+        Sjournals = 0
+        Sbooks = 0
+        Sbook_chapters = 0
 
         for p in self.publications:
             for a in p.authors:
@@ -116,36 +128,37 @@ class Database:
             if len(p.authors) != 1 and self.authors[p.authors[0]].name == author:
                 first += 1
                 if p.pub_type==0:
-                    conference_papers += 1
+                    Fconference_papers += 1
                 if p.pub_type==1:
-                    journals += 1
+                    Fjournals += 1
                 if p.pub_type==2:
-                    books += 1
+                    Fbooks += 1
                 if p.pub_type==3:
-                    book_chapters += 1
+                    Fbook_chapters += 1
 
             if len(p.authors) != 1 and self.authors[p.authors[-1]].name == author:
                 last += 1
                 if p.pub_type == 0:
-                    conference_papers += 1
+                    Lconference_papers += 1
                 if p.pub_type == 1:
-                    journals += 1
+                    Ljournals += 1
                 if p.pub_type == 2:
-                    books += 1
+                    Lbooks += 1
                 if p.pub_type == 3:
-                    book_chapters += 1
+                    Lbook_chapters += 1
 
             if len(p.authors) == 1 and self.authors[p.authors[0]].name == author:
                 sole += 1
                 if p.pub_type == 0:
-                    conference_papers += 1
+                    Sconference_papers += 1
                 if p.pub_type == 1:
-                    journals += 1
+                    Sjournals += 1
                 if p.pub_type == 2:
-                    books += 1
+                    Sbooks += 1
                 if p.pub_type == 3:
-                    book_chapters += 1
-        return (publications,conference_papers,journals,book_chapters,books,coauthors,first,last,sole)
+                    Sbook_chapters += 1
+        return (publications,conference_papers,journals,book_chapters,books,coauthors,first,Fconference_papers,Fjournals,Fbook_chapters,
+                Fbooks,last,Lconference_papers,Ljournals,Lbook_chapters,Lbooks,sole,Sconference_papers,Sjournals,Sbook_chapters,Sbooks)
 
     def calculate_authors_details(self):
         header=("Author", "First Author",
