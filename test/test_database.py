@@ -167,6 +167,13 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(db.calculate_first_last_sole(), (('Author', 'First Author', 'Last Author', 'Sole Author'),
                                                           [[u'AUTHOR', 0, 0, 9], [u'AUTHOR1', 0, 0, 1]]))
 
+        def test_StatsForAuthor(self):
+            db = database.Database()
+            self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
+            #test1
+            self.assertEqual(db.StatsForAuthor("Stefano Ceri"),
+                             (218, 100, 94, 18, 6, 230, 78, 28, 43, 4, 3, 25, 10, 10, 5, 0, 8, 7, 0, 1, 0))
+
     '''def test_sorting(self):
         db = database.Database()
         self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
