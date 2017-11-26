@@ -459,10 +459,11 @@ class Database:
         last=0
         book_chapters=0
         for p in self.publications:
-            if self.authors[p.authors[0]].name == author:
-                first +=1
-            if self.authors[p.authors[len(p.authors)-1]].name == author:
-                last +=1
+            if len(p.authors)!=1:
+                if self.authors[p.authors[0]].name == author:
+                	first +=1
+                if self.authors[p.authors[len(p.authors)-1]].name == author:
+                	last +=1
             for a in p.authors:
                 if str(self.authors[a].name)==author:
                     publications+=1
