@@ -159,7 +159,7 @@ class Database:
                     Sbook_chapters += 1
         return (publications,conference_papers,journals,book_chapters,books,coauthors,first,Fconference_papers,Fjournals,Fbook_chapters,
                 Fbooks,last,Lconference_papers,Ljournals,Lbook_chapters,Lbooks,sole,Sconference_papers,Sjournals,Sbook_chapters,Sbooks)
-#pass the second test
+#pass the third test
     def calculate_authors_details(self):
         header=("Author", "First Author",
                   "Last Author", "Sole Author")
