@@ -84,6 +84,69 @@ class Database:
         return (header, data)
         #pass the third test
 
+    def StatsForAuthor(self,author):
+        publications = 0
+        conference_papers = 0
+        journals = 0
+        books = 0
+        book_chapters = 0
+        coauthors = 0
+        flag = True
+        lista = []
+        first = 0
+        last = 0
+        sole = 0
+
+        for p in self.publications:
+            for a in p.authors:
+                if str(self.authors[a].name)==author:
+                    publications += 1
+                    if p.pub_type==0:
+                        conference_papers += 1
+                    if p.pub_type==1:
+                        journals += 1
+                    if p.pub_type==2:
+                        books += 1
+                    if p.pub_type==3:
+                        book_chapters += 1
+                    for i in p.authors:
+                        if str(self.authors[i].name) != author and str(self.authors[i].name) not in lista:
+                            lista.append(str(self.authors[i].name))
+                            coauthors += 1
+            if len(p.authors) != 1 and self.authors[p.authors[0]].name == author:
+                first += 1
+                if p.pub_type==0:
+                    conference_papers += 1
+                if p.pub_type==1:
+                    journals += 1
+                if p.pub_type==2:
+                    books += 1
+                if p.pub_type==3:
+                    book_chapters += 1
+
+            if len(p.authors) != 1 and self.authors[p.authors[-1]].name == author:
+                last += 1
+                if p.pub_type == 0:
+                    conference_papers += 1
+                if p.pub_type == 1:
+                    journals += 1
+                if p.pub_type == 2:
+                    books += 1
+                if p.pub_type == 3:
+                    book_chapters += 1
+
+            if len(p.authors) == 1 and self.authors[p.authors[0]].name == author:
+                sole += 1
+                if p.pub_type == 0:
+                    conference_papers += 1
+                if p.pub_type == 1:
+                    journals += 1
+                if p.pub_type == 2:
+                    books += 1
+                if p.pub_type == 3:
+                    book_chapters += 1
+        return (publications,conference_papers,journals,book_chapters,books,coauthors,first,last,sole)
+
     def calculate_authors_details(self):
         header=("Author", "First Author",
                   "Last Author", "Sole Author")
