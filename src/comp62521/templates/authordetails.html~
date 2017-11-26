@@ -8,7 +8,7 @@
 	 	<th> {{args.author}}</th>
 	 	{% for column in args.subheader %}
 	 	    <th> </th>
-	 	    <th><center> {{column}} </center></th> 
+	 	    <th> {{column}} </th> 
 	 	    <th> </th>
 	 	    <th> </th>
 	 	{% endfor %}
