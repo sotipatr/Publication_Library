@@ -78,6 +78,37 @@ def showSearchAuthor():
     args["last"]=last
     return render_template("searchAuthor.html",args=args)
 
+@app.route("/StatsForAuthor")
+def showStatsForAuthor():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Stats"
+    author = str(request.args.get("author"))
+    publications, conference_papers, journals, book_chapters, books, coauthors, first, Fconference_papers, Fjournals, Fbook_chapters,Fbooks, last, Lconference_papers, Ljournals, Lbook_chapters, Lbooks, sole, Sconference_papers, Sjournals, Sbook_chapters, Sbooks=db.StatsForAuthor(author)
+    args["publications"]=publications
+    args["conference_papers"]=conference_papers
+    args["journals"]=journals
+    args["book_chapters"]=book_chapters
+    args["books"]=books
+    args["coauthors"]=coauthors
+    args["first"]=first
+    args["Fconference_papers"]=Fconference_papers
+    args["Fjournals"]=Fjournals
+    args["Fbook_chapters"]=Fbook_chapters
+    args["Fbooks"]=Fbooks
+    args["last"]=last
+    args["Lconference_papers"]=Lconference_papers
+    args["Ljournals"]=Fjournals
+    args["Lbook_chapters"]=Lbook_chapters
+    args["Lbooks"]=Lbooks
+    args["sole"]=sole
+    args["Sconference_papers"]=Sconference_papers
+    args["Sjournals"]=Sjournals
+    args["Sbook_chapters"]=Sbook_chapters
+    args["Sbooks"]=Sbooks
+    return render_template("StatsForAuthor.html",args=args)
+
 @app.route("/authordetails")
 def showAuthorDetails():
     dataset=app.config['DATASET']

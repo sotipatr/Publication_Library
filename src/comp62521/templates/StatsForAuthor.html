@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
+
+<h1>{{ args.title }}</h1>
+<form action="/StatsForAuthor" method="get" data-ajax="false" onSubmit="validateForm(this)">
+
+<h4><a>Number of publications </a> </h4>
+     <table>
+         <thead>
+    		<tr>
+    			<td>overall</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>journal articles</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>conference papers</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>books</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>book chapters</td>
+    		</tr>
+
+    		<tr>
+                <td>{{args.publications}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		    <td> {{args.journals}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		    <td> {{args.conference_papers}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td> {{args.books}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		    <td> {{args.book_chapters}} </td></tr>
+    	</thead>
+     </table>
+
+<h4><a>Number of times first author </a> </h4>
+     <table>
+         <thead>
+    		<tr>
+    			<td>overall</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>journal articles</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>conference papers</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>books</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>book chapters</td>
+    		</tr>
+
+    		<tr> <td>{{args.first}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Fjournals}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Fconference_papers}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Fbooks}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Fbook_chapters}} </td></tr>
+    	</thead>
+     </table>
+
+<h4><a>Number of times last author </a> </h4>
+     <table>
+         <thead>
+    		<tr>
+    			<td>overall</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>journal articles</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>conference papers</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>books</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>book chapters</td>
+    		</tr>
+
+    		<tr> <td>{{args.last}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Ljournals}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Lconference_papers}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Lbooks}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Lbook_chapters}} </td></tr>
+    	</thead>
+     </table>
+
+<h4><a>Number of times sole author </a> </h4>
+     <table>
+         <thead>
+    		<tr>
+    			<td>overall</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>journal articles</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>conference papers</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>books</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    			<td>book chapters</td>
+    		</tr>
+
+    		<tr> <td>{{args.sole}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Sjournals}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Sconference_papers}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Sbooks}} </td><td></td><td></td><td></td><td></td><td></td><td></td>
+    		<td> {{args.Sbook_chapters}} </td></tr>
+    	</thead>
+     </table>
+
+<h4><a>Number of co-authors </a> </h4>
+<a> {{ args.coauthors }} </a>
+  </form>
+
+<script>
+function validateForm(form){
+  author = form["author"].value;
+
+  if (author == ""){
+    alert("Please provide an Author");
+    return false;
+  }
+  return true;
+}
+</script>
+{% endblock %}

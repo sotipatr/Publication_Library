@@ -19,7 +19,11 @@
   {% for row in args.data[1] %}
     <tr>
     {% for data_item in row %}
-      <td>{{ data_item }}</td>
+         {% if row[0]==data_item %}
+             <td><a href="/StatsForAuthor?author={{ row[0]}}">{{ data_item }}</a></td>
+         {% else %}
+             <td>{{ data_item }}</td>
+         {% endif %}
     {% endfor %}
     </tr>
   {% endfor %}
