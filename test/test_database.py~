@@ -167,6 +167,16 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(db.calculate_first_last_sole(), (('Author', 'First Author', 'Last Author', 'Sole Author'),
                                                           [[u'AUTHOR', 0, 0, 9], [u'AUTHOR1', 0, 0, 1]]))
 
+        def test_StatsForAuthor(self):
+            db = database.Database()
+            self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
+            #test1
+            self.assertEqual(db.StatsForAuthor("Stefano Ceri"), (218, 100, 94, 18, 6, 230, 78, 28, 43, 4, 3, 25, 10, 10, 5, 0, 8, 7, 0, 1, 0))
+            #test2
+            self.assertEqual(db.StatsForAuthor("Piero Fraternali"), (49, 29, 18, 1, 1, 49, 0, 0, 0, 0, 0, 7, 3, 3, 0, 1, 0, 0, 0, 0, 0))
+            #test3
+            self.assertEqual(db.StatsForAuthor("ABC"), (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+
     '''def test_sorting(self):
         db = database.Database()
         self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
@@ -193,8 +203,40 @@ class TestDatabase(unittest.TestCase):
         #Test case5: Test sorting of column book_chapter
         self.assertNotEquals(data,views.sorting(data, 5))
         self.assertEquals(data,views.sorting(data, 5))'''
-
-
+    
+    def test_calculate_authors_details(self):
+        db = database.Database()
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task1_acc1.xml")))
+        self.assertEqual(db.calculate_authors_details(),(('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                         ('Journals', 'Conference Papers','Books', 'Book Chapters'),
+                                                         [['AUTHOR1',1,1,0,0,0,0,0,0,0,0,0,0],
+                                                         ['AUTHOR2',1,1,1,0,0,0,0,0,0,0,0,0]]))
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task1_acc2.xml")))
+        self.assertEqual(db.calculate_authors_details(),(('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                         ('Journals', 'Conference Papers','Books', 'Book Chapters'),
+                                                         [['AUTHOR1',1,1,1,0,0,0,0,0,0,0,0,0],
+                                                         ['AUTHOR2',1,1,1,0,0,0,0,0,0,0,0,0]]))
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task1_acc3.xml")))
+        self.assertEqual(db.calculate_authors_details(),(('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                         ('Journals', 'Conference Papers','Books', 'Book Chapters'),
+                                                         [['AUTHOR1',0,0,0,1,1,1,0,0,0,0,0,0],
+                                                         ['AUTHOR2',0,0,0,1,1,1,0,0,0,0,0,0]]))
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task1_acc4.xml")))
+        self.assertEqual(db.calculate_authors_details(),(('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                         ('Journals', 'Conference Papers','Books', 'Book Chapters'),
+                                                         [['AUTHOR1',0,0,0,0,0,0,1,1,1,0,0,0],
+                                                         ['AUTHOR2',0,0,0,0,0,0,1,1,1,0,0,0]]))
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task1_acc5.xml")))
+        self.assertEqual(db.calculate_authors_details(),(('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                         ('Journals', 'Conference Papers','Books', 'Book Chapters'),
+                                                         [['AUTHOR1',0,0,0,0,0,0,0,0,0,1,1,1],
+                                                         ['AUTHOR2',0,0,0,0,0,0,0,0,0,1,1,1]]))
+        self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task1_acc6.xml")))
+        self.assertEqual(db.calculate_authors_details(),(('Author', 'First Author', 'Last Author', 'Sole Author'),
+                                                         ('Journals', 'Conference Papers','Books', 'Book Chapters'),
+                                                         [['AUTHOR1',1,1,1,1,1,1,1,1,1,1,1,1],
+                                                         ['AUTHOR2',1,1,1,1,1,1,1,1,1,1,1,1]]))
+    
     def test_searchAuthor(self):
         db = database.Database()
         self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
@@ -275,9 +317,16 @@ class TestDatabase(unittest.TestCase):
 	data = db.get_coauthor_data(db.min_year, db.max_year, 4)
 	#Assert for non empty
         self.assertTrue(views.sort_by_surname(data) != 0)
-	data = db.get_publications_by_author(db.min_year, db.max_year, 4)
+	data = db.get_coauthor_data(db.min_year, db.max_year, 4)
 	data2 = (('Author', 'Co-Authors'), [[u'Raghu Ramakrishnan (1)', u'Stefano Ceri (4)'], [u'Norman W. Paton (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Shamkant B. Navathe (2)', u'Stefano Ceri (4), Carlo Batini (2)'], [u'Lu Mao (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Darren Lunn (2)', u'Simon Harper (2), Sean Bechhofer (2)'], [u'Bernadette Farias Lscio (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Cornelia Hedeler (8)', u'Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Simon Harper (2)', u'Darren Lunn (2), Sean Bechhofer (2)'], [u'Chenjuan Guo (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Piero Fraternali (1)', u'Stefano Ceri (4)'], [u'Alvaro A. A. Fernandes (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Suzanne M. Embury (8)'], [u'Suzanne M. Embury (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8)'], [u'Stefano Ceri (4)', u'Piero Fraternali (1), Carlo Batini (2), Shamkant B. Navathe (2), Raghu Ramakrishnan (1)'], [u'Khalid Belhajjame (8)', u'Cornelia Hedeler (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Sean Bechhofer (2)', u'Simon Harper (2), Darren Lunn (2)'], [u'Carlo Batini (2)', u'Stefano Ceri (4), Shamkant B. Navathe (2)'], [u'Ian Arundale (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)']])
 	self.assertEqual(data2, views.sort_by_surname(data))
+
+    def test_search_part_name(self):
+        db = database.Database()
+        self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
+
+        #Test case1: Test for search_part_name
+        self.assertEqual(db.calculate_searchPartName("sam"),['Pedro R. Falcone Sampaio', 'Sandra de F. Mendes Sampaio', 'Fredrik Samson', 'Pierangela Samarati', 'Samuel Madden', 'Sam Guinea', 'Sandra Sampaio'])
 
 if __name__ == '__main__':
     unittest.main()

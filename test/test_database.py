@@ -267,7 +267,7 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(db.calculate_searchAuthors("Carlo Batini"),(10,6,3,0,1,15,3,5))
         
         #Test case8: Test final
-        self.assertEqual(db.calculate_searchAuthors("Stefano Ceri"),(218,100,94,18,6,230,86,33))
+        self.assertEqual(db.calculate_searchAuthors("Stefano Ceri"),(218,100,94,18,6,230,78,25))
 
     def test_sort_by_surname(self):
         db = database.Database()
@@ -320,6 +320,13 @@ class TestDatabase(unittest.TestCase):
 	data = db.get_coauthor_data(db.min_year, db.max_year, 4)
 	data2 = (('Author', 'Co-Authors'), [[u'Raghu Ramakrishnan (1)', u'Stefano Ceri (4)'], [u'Norman W. Paton (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Shamkant B. Navathe (2)', u'Stefano Ceri (4), Carlo Batini (2)'], [u'Lu Mao (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Darren Lunn (2)', u'Simon Harper (2), Sean Bechhofer (2)'], [u'Bernadette Farias Lscio (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Cornelia Hedeler (8)', u'Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Simon Harper (2)', u'Darren Lunn (2), Sean Bechhofer (2)'], [u'Chenjuan Guo (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Piero Fraternali (1)', u'Stefano Ceri (4)'], [u'Alvaro A. A. Fernandes (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Suzanne M. Embury (8)'], [u'Suzanne M. Embury (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8)'], [u'Stefano Ceri (4)', u'Piero Fraternali (1), Carlo Batini (2), Shamkant B. Navathe (2), Raghu Ramakrishnan (1)'], [u'Khalid Belhajjame (8)', u'Cornelia Hedeler (8), Lu Mao (8), Chenjuan Guo (8), Ian Arundale (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)'], [u'Sean Bechhofer (2)', u'Simon Harper (2), Darren Lunn (2)'], [u'Carlo Batini (2)', u'Stefano Ceri (4), Shamkant B. Navathe (2)'], [u'Ian Arundale (8)', u'Cornelia Hedeler (8), Khalid Belhajjame (8), Lu Mao (8), Chenjuan Guo (8), Bernadette Farias Lscio (8), Norman W. Paton (8), Alvaro A. A. Fernandes (8), Suzanne M. Embury (8)']])
 	self.assertEqual(data2, views.sort_by_surname(data))
+
+    def test_search_part_name(self):
+        db = database.Database()
+        self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
+
+        #Test case1: Test for search_part_name
+        self.assertEqual(db.calculate_searchPartName("sam"),['Pedro R. Falcone Sampaio', 'Sandra de F. Mendes Sampaio', 'Fredrik Samson', 'Pierangela Samarati', 'Samuel Madden', 'Sam Guinea', 'Sandra Sampaio'])
 
 if __name__ == '__main__':
     unittest.main()
