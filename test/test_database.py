@@ -172,6 +172,8 @@ class TestDatabase(unittest.TestCase):
             self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
             #test1
             self.assertEqual(db.StatsForAuthor("Stefano Ceri"), (218, 100, 94, 18, 6, 230, 78, 28, 43, 4, 3, 25, 10, 10, 5, 0, 8, 7, 0, 1, 0))
+            #test2
+            self.assertEqual(db.StatsForAuthor("Piero Fraternali"), (49, 29, 18, 1, 1, 49, 0, 0, 0, 0, 0, 7, 3, 3, 0, 1, 0, 0, 0, 0, 0))
 
     '''def test_sorting(self):
         db = database.Database()
