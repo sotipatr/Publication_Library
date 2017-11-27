@@ -511,6 +511,16 @@ class Database:
         if self.max_year == None or year > self.max_year:
             self.max_year = year
 
+    def calculate_searchPartName(self,part_name):
+        matching_Authors = [];
+        #print (part_name)
+        for i in self.authors:
+            if ( part_name.lower() in i.name.lower() ):
+                #print (i.name)
+                matching_Authors.append(str(i.name))
+        #print (matching_Authors)
+        return (matching_Authors)
+        
     def _get_collaborations(self, author_id, include_self):
         data = {}
         for p in self.publications:

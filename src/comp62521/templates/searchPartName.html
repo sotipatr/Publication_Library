@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
+
+<h1>{{ args.title }}</h1>
+<form action="/searchPartName" method="get" data-ajax="false" onSubmit="validateForm(this)">
+	Author Name:<br>
+	<input type="text" name="author">
+	<input type="submit" value="Submit">
+
+     <table>
+      <thead>
+        {% if args.first!="1" %}
+          <tr>
+            <th><center>Data</center></th>
+          </tr>
+        {% endif %}
+
+        {% for x in args.part_name %}
+        <tr>
+          <td>
+            <center>
+               <a href="/StatsForAuthor?author={{x}}">{{x}}</a>
+            </center>
+          </td>
+        </tr>
+        {% endfor %}
+
+      </thead>
+    </table>
+ 
+
+  </form>
+
+
+  
+<script>
+function validateForm(form){
+  author = form["author"].value;
+  
+  if (author == ""){
+    alert("Please provide part name of the Author");
+    return false;
+  }
+  return true;
+}
+</script>
+{% endblock %}

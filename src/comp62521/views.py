@@ -51,6 +51,25 @@ def sorting(data, no_col, stat):
 	else:
 		return (data_sorted[0], data_sorted[1])
 
+@app.route("/searchPartName")
+def showSearchPartName():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Search for Author by part name"
+    author = str(request.args.get("author"))
+    app.debug=True
+    first = str(request.args.get('first'))
+    args["first"] = first
+
+    if (first=="None"):
+        args["part_name"]=db.calculate_searchPartName(author)
+        if (len(args["part_name"])==1):
+            args["authors"]=args["part_name"]
+            return render_template("StatsForAuthor.html",args=args)
+    
+    return render_template("searchPartName.html",args=args)
+    
 @app.route("/stats")
 def showFirstLast():
     dataset=app.config['DATASET']
