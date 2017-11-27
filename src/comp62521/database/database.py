@@ -516,18 +516,23 @@ class Database:
         matching_Authors1 = [];
         temp = []
         matching_Authors_sur = []
+        matching_Authors_fir = []
         for i in self.authors:
             full_name = str(i.name).split()
             if((full_name[len(full_name)-1].lower()).startswith(part_name.lower()) == True):
                 matching_Authors_sur.append(full_name)
+            elif((full_name[0].lower()).startswith(part_name.lower()) == True):
+                matching_Authors_fir.append(full_name)
+
             elif ( ( part_name.lower() in i.name.lower() ) == True):
                 temp.append(full_name)
+
             else:
                 
                 pass
         matching_Authors1.append(sorted(matching_Authors_sur, key=itemgetter(-1,0)))
-        
-        matching_Authors1.append(temp)
+        matching_Authors1.append(sorted(matching_Authors_fir, key=itemgetter(0,-1)))
+        #matching_Authors1.append(temp)
         matching_Authors=[]
         
         for i in matching_Authors1:
