@@ -3,23 +3,19 @@
 {% block content %}
 
 <h1>{{ args.title }}</h1>
-{% if ((args.first=="None") and (len(args.part_name)==1))%}
-	{% set str="/StatsForAuthor" %}
-{% else%}
-	{% set str="/searchPartName" %}
-{% endif %}
-<form action={{str}} method="get" data-ajax="false" onSubmit="validateForm(this)">
+
+<form action="/searchPartName" method="get" data-ajax="false" onSubmit="validateForm(this)">
 	Author Name:<br>
 	<input type="text" name="author">
 	<input type="submit" value="Submit">
-
+   {% if args.first!="1" %}
      <table>
       <thead>
-        {% if args.first!="1" %}
+        
           <tr>
             <th><center>Data</center></th>
           </tr>
-        {% endif %}
+        
 
         {% for x in args.part_name %}
         <tr>
@@ -33,7 +29,10 @@
 
       </thead>
     </table>
- 
+   {% endif %}
+   {% if args.onlyOne=="1" %}
+	<meta http-equiv="refresh" content="0.000; url=/StatsForAuthor?author={{args.authors}}">
+   {% endif %}
 
   </form>
 

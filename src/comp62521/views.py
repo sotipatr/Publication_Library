@@ -1,6 +1,6 @@
 from comp62521 import app
 from database import database
-from flask import (render_template, request)
+from flask import (render_template, request, redirect, url_for)
 from operator import itemgetter
 
 #status = idle (no sorting)
@@ -61,15 +61,28 @@ def showSearchPartName():
     app.debug=True
     first = str(request.args.get('first'))
     args["first"] = first
-    print(first)
+    #print(first)
     if (first=="None"):
         args["part_name"]=db.calculate_searchPartName(author)
         if (len(args["part_name"])==1):
             args["authors"]=args["part_name"][0]
-	    print(args["authors"])
-            return render_template("StatsForAuthor.html",args=args)
+	    args["onlyOne"] = "1"
+	    print(args["onlyOne"])
+	    #args["str"] = "/StatsForAuthor"
+            #return render_template("StatsForAuthor.html",args=args)
+	    #return redirect(url_for('StatsForAuthor', args=args))
+	    str1 = "StatsForAuthor.html"
+	else:
+	    print("2")
+	    #args["str"] = "/searchPartName"
+	    #return render_template("searchPartName.html",args=args)
+	    str1 = "searchPartName.html"
     else:
-    	return render_template("searchPartName.html",args=args)
+	print("3")
+	#args["str"] = "/searchPartName"
+    	#return render_template("searchPartName.html",args=args)
+	str1 = "searchPartName.html"
+    return render_template("searchPartName.html",args=args)
     
 @app.route("/stats")
 def showFirstLast():
@@ -104,12 +117,18 @@ def showStatsForAuthor():
     db = app.config['DATABASE']
     args = {"dataset":dataset, "id":"stats"}
     #args["title"] = "Stats"
-    if args["author"]!="None":
+    author = str(request.args.get("author"))
+    '''if author=="None":
+	print("if")
+	author = args["author"]'''
+    #else:
+	#print("else")
+    '''if args["author"]!="None":
 	print("if")
 	author = args["author"]
     else:
-	print("else")
-        author = str(request.args.get("author"))
+	print("else")'''
+        
     args["title"] = "Stats for "+author
     publications, conference_papers, journals, book_chapters, books, coauthors, first, Fconference_papers, Fjournals, Fbook_chapters,Fbooks, last, Lconference_papers, Ljournals, Lbook_chapters, Lbooks, sole, Sconference_papers, Sjournals, Sbook_chapters, Sbooks=db.StatsForAuthor(author)
     args["publications"]=publications
