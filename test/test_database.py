@@ -330,7 +330,7 @@ class TestDatabase(unittest.TestCase):
         self.assertTrue(db.read(path.join(self.data_dir, "sprint3_task3.xml")))
         self.assertEquals(db.calculate_searchPartName("sam"),['Alice Sam','Brian Sam','Alice Sammer','Brian Sammer','Alice Samming','Brian Samming',
                                                                'Brian Sam Alice','Sam Alice','Samuel Alice','Alice Sam Brian','Sam Brian','Samuel Brian',
-                                                               'Alice Esam','Brian Esam','Mona Zaki'])
+                                                               'Alice Esam','Brian Esam'])
 
 if __name__ == '__main__':
     unittest.main()
