@@ -2,6 +2,7 @@ from comp62521.statistics import average
 import itertools
 import numpy as np
 from xml.sax import handler, make_parser, SAXException
+from operator import itemgetter
 
 PublicationType = [
     "Conference Paper", "Journal", "Book", "Book Chapter"]
@@ -512,13 +513,29 @@ class Database:
             self.max_year = year
 
     def calculate_searchPartName(self,part_name):
-        matching_Authors = [];
-        
+        matching_Authors1 = [];
+        temp = []
+        matching_Authors_sur = []
         for i in self.authors:
-            if ( part_name.lower() in i.name.lower() ):
-                #print (i.name)
-                matching_Authors.append(str(i.name))
-        #print (matching_Authors)
+            full_name = str(i.name).split()
+            if((full_name[len(full_name)-1].lower()).startswith(part_name.lower()) == True):
+                matching_Authors_sur.append(full_name)
+            elif ( ( part_name.lower() in i.name.lower() ) == True):
+                temp.append(full_name)
+            else:
+                
+                pass
+        matching_Authors1.append(sorted(matching_Authors_sur, key=itemgetter(-1,0)))
+        
+        matching_Authors1.append(temp)
+        matching_Authors=[]
+        
+        for i in matching_Authors1:
+            for j in i:
+                string=''
+                for k in j:
+                   string+=str(k)+' '
+                matching_Authors.append(string.strip())
         return (matching_Authors)
         
     def _get_collaborations(self, author_id, include_self):
