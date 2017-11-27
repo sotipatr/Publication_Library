@@ -78,6 +78,58 @@ def showSearchAuthor():
     args["last"]=last
     return render_template("searchAuthor.html",args=args)
 
+@app.route("/StatsForAuthor")
+def showStatsForAuthor():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Stats"
+    author = str(request.args.get("author"))
+    publications, conference_papers, journals, book_chapters, books, coauthors, first, Fconference_papers, Fjournals, Fbook_chapters,Fbooks, last, Lconference_papers, Ljournals, Lbook_chapters, Lbooks, sole, Sconference_papers, Sjournals, Sbook_chapters, Sbooks=db.StatsForAuthor(author)
+    args["publications"]=publications
+    args["conference_papers"]=conference_papers
+    args["journals"]=journals
+    args["book_chapters"]=book_chapters
+    args["books"]=books
+    args["coauthors"]=coauthors
+    args["first"]=first
+    args["Fconference_papers"]=Fconference_papers
+    args["Fjournals"]=Fjournals
+    args["Fbook_chapters"]=Fbook_chapters
+    args["Fbooks"]=Fbooks
+    args["last"]=last
+    args["Lconference_papers"]=Lconference_papers
+    args["Ljournals"]=Fjournals
+    args["Lbook_chapters"]=Lbook_chapters
+    args["Lbooks"]=Lbooks
+    args["sole"]=sole
+    args["Sconference_papers"]=Sconference_papers
+    args["Sjournals"]=Sjournals
+    args["Sbook_chapters"]=Sbook_chapters
+    args["Sbooks"]=Sbooks
+    return render_template("StatsForAuthor.html",args=args)
+
+@app.route("/authordetails")
+def showAuthorDetails():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Authors' Publications by Type"
+    header,subheader,data1=db.calculate_authors_details()
+    data=[]
+    for i in range(len(data1)):
+    	temp=[]
+    	for j in range(0,13):
+    		temp.append(data1[i][j])
+    		if j % 3 == 0 and j != 0:
+    			temp.append(' ')
+    	data.append(temp)
+    args["header"]=header[1:]
+    args["author"]=header[0]
+    args["subheader"]=subheader
+    args["data"] = data
+    return render_template("authordetails.html", args=args)
+
 @app.route("/averages")
 def showAverages():
     dataset = app.config['DATASET']
@@ -172,7 +224,6 @@ def showCoAuthors():
     if (no_col != None):
 		if (int(no_col) == 0):
 			args["data"] = sort_by_surname(get_from_db)
-			print(args["data"])
 		else:
 			args["data"] = sorting(get_from_db, int(no_col), 0)
     elif (no_col == None):
@@ -215,7 +266,6 @@ def showPublicationSummary(status):
     if (no_col != None):
 		if (flag_author == 1 and int(no_col) == 0):
 			args["data"] = sort_by_surname(get_from_db)
-			print(args["data"])
 		else:
 			args["data"] = sorting(get_from_db, int(no_col), 0)
     elif (no_col == None):
