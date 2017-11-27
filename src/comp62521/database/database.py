@@ -513,7 +513,7 @@ class Database:
 
     def calculate_searchPartName(self,part_name):
         matching_Authors = [];
-        #print (part_name)
+        
         for i in self.authors:
             if ( part_name.lower() in i.name.lower() ):
                 #print (i.name)

@@ -1,0 +1,67 @@
+
+
+
+
+
+ 
+  
+ 
+ 
+
+  
+  
+ 
+   
+  
+
+<dblp>
+<incollection>
+    <author>Brian Sam Alice</author>
+    <author>Sam Alice</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</incollection>
+<incollection>
+    <author>Samuel Alice</author>
+    <author>Alice Sam Brian</author>
+    <title>PUBLICATION2</title>
+    <year>9999</year>
+</incollection>
+<incollection>
+    <author>Sam Brian</author>
+    <title>Samuel Brian</title>
+    <year>9999</year>
+</incollection>
+<incollection>
+    <author>Alice Esam</author>
+    <title>Brian Esam</title>
+    <year>9999</year>
+</incollection>
+<book>
+    <author>Alice Sam</author>
+    <author>Brian Sam</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</book>
+<book>
+    <author>Alice Sammer</author>
+    <author>Brian Sammer</author>
+    <title>PUBLICATION2</title>
+    <year>9999</year>
+</book>
+<book>
+    <author>Alice Samming</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</book>
+<book>
+    <author>Brian Samming</author>
+    <title>PUBLICATION3</title>
+    <year>9999</year>
+</book>
+<article>
+    <author>Mona Zaki</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</article>
+</dblp>
