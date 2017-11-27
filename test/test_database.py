@@ -334,8 +334,10 @@ class TestDatabase(unittest.TestCase):
 
         #self.assertEquals(db.calculate_searchPartName("sam"),['Alice Sam','Brian Sam','Alice Sammer','Brian Sammer','Alice Samming','Brian Samming',
         #                                                    'Sam Alice','Sam Brian','Samuel Alice','Samuel Brian'])
+        #self.assertEquals(db.calculate_searchPartName("sam"),['Alice Sam','Brian Sam','Alice Sammer','Brian Sammer','Alice Samming','Brian Samming',
+        #                                                    'Sam Alice','Sam Brian','Samuel Alice','Samuel Brian','Brian Sam Alice','Alice Sam Brian'])
         self.assertEquals(db.calculate_searchPartName("sam"),['Alice Sam','Brian Sam','Alice Sammer','Brian Sammer','Alice Samming','Brian Samming',
-                                                            'Sam Alice','Sam Brian','Samuel Alice','Samuel Brian','Brian Sam Alice','Alice Sam Brian'])
+                                                            'Sam Alice','Sam Brian','Samuel Alice','Samuel Brian','Brian Sam Alice','Alice Sam Brian','Alice Esam','Brian Esam'])
 
 if __name__ == '__main__':
     unittest.main()
