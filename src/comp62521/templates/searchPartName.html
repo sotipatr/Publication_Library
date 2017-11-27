@@ -3,7 +3,12 @@
 {% block content %}
 
 <h1>{{ args.title }}</h1>
-<form action="/searchPartName" method="get" data-ajax="false" onSubmit="validateForm(this)">
+{% if ((args.first=="None") and (len(args.part_name)==1))%}
+	{% set str="/StatsForAuthor" %}
+{% else%}
+	{% set str="/searchPartName" %}
+{% endif %}
+<form action={{str}} method="get" data-ajax="false" onSubmit="validateForm(this)">
 	Author Name:<br>
 	<input type="text" name="author">
 	<input type="submit" value="Submit">

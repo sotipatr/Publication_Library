@@ -61,14 +61,15 @@ def showSearchPartName():
     app.debug=True
     first = str(request.args.get('first'))
     args["first"] = first
-
+    print(first)
     if (first=="None"):
         args["part_name"]=db.calculate_searchPartName(author)
         if (len(args["part_name"])==1):
-            args["authors"]=args["part_name"]
+            args["authors"]=args["part_name"][0]
+	    print(args["authors"])
             return render_template("StatsForAuthor.html",args=args)
-    
-    return render_template("searchPartName.html",args=args)
+    else:
+    	return render_template("searchPartName.html",args=args)
     
 @app.route("/stats")
 def showFirstLast():
@@ -103,7 +104,12 @@ def showStatsForAuthor():
     db = app.config['DATABASE']
     args = {"dataset":dataset, "id":"stats"}
     #args["title"] = "Stats"
-    author = str(request.args.get("author"))
+    if args["author"]!="None":
+	print("if")
+	author = args["author"]
+    else:
+	print("else")
+        author = str(request.args.get("author"))
     args["title"] = "Stats for "+author
     publications, conference_papers, journals, book_chapters, books, coauthors, first, Fconference_papers, Fjournals, Fbook_chapters,Fbooks, last, Lconference_papers, Ljournals, Lbook_chapters, Lbooks, sole, Sconference_papers, Sjournals, Sbook_chapters, Sbooks=db.StatsForAuthor(author)
     args["publications"]=publications
