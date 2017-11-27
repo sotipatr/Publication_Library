@@ -517,13 +517,15 @@ class Database:
         temp = []
         matching_Authors_sur = []
         matching_Authors_fir = []
+        matching_Authors_mid = []
         for i in self.authors:
             full_name = str(i.name).split()
             if((full_name[len(full_name)-1].lower()).startswith(part_name.lower()) == True):
                 matching_Authors_sur.append(full_name)
             elif((full_name[0].lower()).startswith(part_name.lower()) == True):
                 matching_Authors_fir.append(full_name)
-
+            elif ((len(full_name)>2) and ((full_name[1].lower()).startswith(part_name.lower()) == True) == True):
+                matching_Authors_mid.append(full_name)
             elif ( ( part_name.lower() in i.name.lower() ) == True):
                 temp.append(full_name)
 
@@ -532,6 +534,7 @@ class Database:
                 pass
         matching_Authors1.append(sorted(matching_Authors_sur, key=itemgetter(-1,0)))
         matching_Authors1.append(sorted(matching_Authors_fir, key=itemgetter(0,-1)))
+        matching_Authors1.append(sorted(matching_Authors_mid, key=itemgetter(1,-1)))
         #matching_Authors1.append(temp)
         matching_Authors=[]
         
