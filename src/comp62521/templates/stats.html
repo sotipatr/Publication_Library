@@ -9,7 +9,7 @@
     <tr>
     {% set i=0 %}
     {% for column in args.data[0] %}
-      <th><center><a href="/stats/{{args.id}}?col={{i}}">{{ column }}</a></center></th>
+      <th><center>{{ column }}</center></th>
         {% set i=i+1 %}
     {% endfor %}
     </tr>
