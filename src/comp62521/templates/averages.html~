@@ -5,7 +5,7 @@
 {% set j=0 %}
 {% for table in args.tables %}
 <h2>{{ table.title }}</h2>
-<table cellspacing="10">
+<table>
   <thead>
     <tr>
       {% set i=0 %}

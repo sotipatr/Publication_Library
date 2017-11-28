@@ -3,12 +3,12 @@
 {% block content %}
 
 <h1>{{ args.title }}</h1>
-<table>
+<table border="1">
 	 <tr>
 	 	<th> {{args.author}}</th>
 	 	{% for column in args.subheader %}
 	 	    <th> </th>
-	 	    <th> {{column}} </th> 
+	 	    <th width="100%"><center> {{column}} </center></th> 
 	 	    <th> </th>
 	 	    <th> </th>
 	 	{% endfor %}

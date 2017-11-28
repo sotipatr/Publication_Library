@@ -30,7 +30,7 @@
       </thead>
     </table>
    {% elif args.flag_none == "1" %}
-	<h3><center>No authror name match found for this part of name!<br>Please provide a new one.</center></h3>
+	<h1><center>No authror name match found for this part of name!<br>Please provide a new one.</center></h1>
    {% endif %}
    {% if args.onlyOne=="1" %}
 	<meta http-equiv="refresh" content="0.000; url=/StatsForAuthor?author={{args.authors}}">

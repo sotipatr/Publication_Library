@@ -61,27 +61,18 @@ def showSearchPartName():
     app.debug=True
     first = str(request.args.get('first'))
     args["first"] = first
-    #print(first)
     if (first=="None"):
         args["part_name"]=db.calculate_searchPartName(author)
         if (len(args["part_name"])==1):
             args["authors"]=args["part_name"][0]
 	    args["onlyOne"] = "1"
-	    print(args["onlyOne"])
-	    #args["str"] = "/StatsForAuthor"
-            #return render_template("StatsForAuthor.html",args=args)
-	    #return redirect(url_for('StatsForAuthor', args=args))
-	    str1 = "StatsForAuthor.html"
+	    args["flag_none"] = "0"
+	elif(len(args["part_name"])==0):
+	    args["flag_none"] = "1"
 	else:
-	    print("2")
-	    #args["str"] = "/searchPartName"
-	    #return render_template("searchPartName.html",args=args)
-	    str1 = "searchPartName.html"
+	   args["flag_none"] = "0" 
     else:
-	print("3")
-	#args["str"] = "/searchPartName"
-    	#return render_template("searchPartName.html",args=args)
-	str1 = "searchPartName.html"
+	args["flag_none"] = "0"
     return render_template("searchPartName.html",args=args)
     
 @app.route("/stats")

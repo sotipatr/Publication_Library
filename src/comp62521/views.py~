@@ -1,6 +1,6 @@
 from comp62521 import app
 from database import database
-from flask import (render_template, request)
+from flask import (render_template, request, redirect, url_for)
 from operator import itemgetter
 
 #status = idle (no sorting)
@@ -51,6 +51,44 @@ def sorting(data, no_col, stat):
 	else:
 		return (data_sorted[0], data_sorted[1])
 
+@app.route("/searchPartName")
+def showSearchPartName():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Search for Author by part name"
+    author = str(request.args.get("author"))
+    app.debug=True
+    first = str(request.args.get('first'))
+    args["first"] = first
+    #print(first)
+    if (first=="None"):
+        args["part_name"]=db.calculate_searchPartName(author)
+        if (len(args["part_name"])==1):
+            args["authors"]=args["part_name"][0]
+	    args["onlyOne"] = "1"
+	    args["flag_none"] = "0"
+	    #print(args["onlyOne"])
+	    #args["str"] = "/StatsForAuthor"
+            #return render_template("StatsForAuthor.html",args=args)
+	    #return redirect(url_for('StatsForAuthor', args=args))
+	    #str1 = "StatsForAuthor.html"
+	elif(len(args["part_name"])==0):
+	    #print("2")
+	    args["flag_none"] = "1"
+	    #return render_template("searchPartName.html",args=args)
+	    #str1 = "searchPartName.html"
+	else:
+	   args["flag_none"] = "0" 
+    else:
+	args["flag_none"] = "0"
+	#print("3")
+	#args["str"] = "/searchPartName"
+    	#return render_template("searchPartName.html",args=args)
+	#str1 = "searchPartName.html"
+    #print (args["flag_none"])
+    return render_template("searchPartName.html",args=args)
+    
 @app.route("/stats")
 def showFirstLast():
     dataset=app.config['DATASET']
@@ -83,8 +121,20 @@ def showStatsForAuthor():
     dataset=app.config['DATASET']
     db = app.config['DATABASE']
     args = {"dataset":dataset, "id":"stats"}
-    args["title"] = "Stats"
+    #args["title"] = "Stats"
     author = str(request.args.get("author"))
+    '''if author=="None":
+	print("if")
+	author = args["author"]'''
+    #else:
+	#print("else")
+    '''if args["author"]!="None":
+	print("if")
+	author = args["author"]
+    else:
+	print("else")'''
+        
+    args["title"] = "Stats for "+author
     publications, conference_papers, journals, book_chapters, books, coauthors, first, Fconference_papers, Fjournals, Fbook_chapters,Fbooks, last, Lconference_papers, Ljournals, Lbook_chapters, Lbooks, sole, Sconference_papers, Sjournals, Sbook_chapters, Sbooks=db.StatsForAuthor(author)
     args["publications"]=publications
     args["conference_papers"]=conference_papers
