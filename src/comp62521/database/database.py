@@ -529,24 +529,23 @@ class Database:
                 matching_Authors_fir.append(full_name)
             elif ((len(full_name)>2) and ((full_name[1].lower()).startswith(part_name.lower()) == True) == True):
                 matching_Authors_mid.append(full_name)
-            elif ( ( part_name.lower() in i.name.lower() ) == True):
-                temp.append(full_name)
             elif ( part_name.lower() in full_name[-1].lower() ):
                 matching_Authors_subsur.append(full_name)
             elif ( part_name.lower() in full_name[0].lower() ):
                 matching_Authors_subfir.append(full_name)
             elif ((len(full_name)>2) and part_name.lower() in full_name[1].lower() ):
                 matching_Authors_submid.append(full_name)
+            elif ( ( part_name.lower() in i.name.lower() ) == True):
+                temp.append(full_name)
 
             else:
-                
                 pass
-        matching_Authors1.append(sorted(matching_Authors_sur, key=itemgetter(-1,0)))
-        matching_Authors1.append(sorted(matching_Authors_fir, key=itemgetter(0,-1)))
-        matching_Authors1.append(sorted(matching_Authors_mid, key=itemgetter(1,-1)))
-        matching_Authors1.append(sorted(matching_Authors_subsur, key=itemgetter(-1,0)))
-        matching_Authors1.append(sorted(matching_Authors_subfir, key=itemgetter(0,-1)))
-        matching_Authors1.append(sorted(matching_Authors_submid, key=itemgetter(1,-1)))
+        matching_Authors1.append(sorted(matching_Authors_sur, key=itemgetter(-1,0,1)))
+        matching_Authors1.append(sorted(matching_Authors_fir, key=itemgetter(0,-1,1)))
+        matching_Authors1.append(sorted(matching_Authors_mid, key=itemgetter(1,-1,1)))
+        matching_Authors1.append(sorted(matching_Authors_subsur, key=itemgetter(-1,0,1)))
+        matching_Authors1.append(sorted(matching_Authors_subfir, key=itemgetter(0,-1,1)))
+        matching_Authors1.append(sorted(matching_Authors_submid, key=itemgetter(1,-1,1)))
         matching_Authors1.append(temp)
         matching_Authors=[]
         
