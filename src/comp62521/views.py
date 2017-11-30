@@ -135,7 +135,7 @@ def showStatsForAuthor():
     args["Fbooks"]=Fbooks
     args["last"]=last
     args["Lconference_papers"]=Lconference_papers
-    args["Ljournals"]=Fjournals
+    args["Ljournals"]=Ljournals
     args["Lbook_chapters"]=Lbook_chapters
     args["Lbooks"]=Lbooks
     args["sole"]=sole
