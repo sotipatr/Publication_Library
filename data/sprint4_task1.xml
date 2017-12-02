@@ -1,0 +1,35 @@
+<dblp>
+<incollection>
+    <author>A</author>
+    <author>B</author>
+    <author>D</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</incollection>
+
+<incollection>
+    <author>A</author>
+    <author>E</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</incollection>
+
+<incollection>
+    <author>C</author>
+    <author>B</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</incollection>
+
+<incollection>
+    <author>C</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</incollection>
+
+<incollection>
+    <author>F</author>
+    <title>PUBLICATION1</title>
+    <year>9999</year>
+</incollection>
+</dblp>

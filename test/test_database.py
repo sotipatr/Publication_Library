@@ -342,5 +342,10 @@ class TestDatabase(unittest.TestCase):
         self.assertEquals(db.calculate_searchPartName("sam"),['Alice Sam','Brian Sam','Alice Sammer','Brian Sammer','Alice Samming','Brian Samming',
                                                             'Sam Alice','Sam Brian','Samuel Alice','Samuel Brian','Brian Sam Alice','Alice Sam Brian','Alice Esam','Brian Esam','Esam Alice','Esam Brian', 'Brian Esam Alice', 'Alice Esam Brian'])
 
+    def test_degrees_of_separation(self):
+        db = database.Database()
+        self.assertTrue(db.read(path.join(self.data_dir,"sprint4_task1.xml")))
+        self.assertEquals(db.test_degrees_of_separation("C","D"),1)
+
 if __name__ == '__main__':
     unittest.main()
