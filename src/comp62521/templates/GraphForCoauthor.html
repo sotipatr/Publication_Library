@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
+<h1>{{ args.title }}</h1>
+
+<div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        var co = {{args.co_list}}
+        var coauthors = co.toJSON()
+        var option = {
+            title : {
+                text:'author',
+                left:'center',
+                top:'50%',
+            },
+            series : [
+                {
+                    type:'pie',
+                    radius : [70, 100],
+                    center : ['50%', '50%'],
+                    roseType : 'area',
+                    data:[
+                        coauthors
+                    ]
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+        document.getElementById("demo").innerHTML = coauthors;
+        window.alert(coauthors);
+    </script>
+    <p id="demo">
+
+    </p>
+
+{% endblock %}
