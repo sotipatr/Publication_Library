@@ -327,3 +327,39 @@ def showPublicationSummary(status):
     elif (no_col == None):
 		args["data"] = get_from_db
     return render_template('statistics_details.html', args=args)
+
+@app.route("/PubYearChart")
+def showChart_publicationsbyyear():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Stats"
+    args["data"] = db.get_publications_by_year()
+    return render_template("PubYearChart.html", args=args)
+
+@app.route("/AuthorYearChart")
+def showChart_authorsbyyear():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Stats"
+    args["data"] = db.get_author_totals_by_year()
+    return render_template("AuthorYearChart.html", args=args)
+
+@app.route("/PubAuthorChart")
+def showChart_publicationsbyauthor():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Stats"
+    args["data"] = db.get_publications_by_author()
+    return render_template("PubAuthorChart.html", args=args)
+
+@app.route("/StatsChart")
+def showChart_Statsforauthor():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    args["title"] = "Stats"
+    args["data"] = db.calculate_first_last_sole()
+    return render_template("StatsChart.html", args=args)
