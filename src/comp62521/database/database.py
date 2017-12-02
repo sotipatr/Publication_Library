@@ -511,6 +511,11 @@ class Database:
             self.min_year = year
         if self.max_year == None or year > self.max_year:
             self.max_year = year
+    def degrees_of_separation(self,author1,author2):
+    	return 1;
+
+
+
 
     def calculate_searchPartName(self,part_name):
         matching_Authors1 = [];
