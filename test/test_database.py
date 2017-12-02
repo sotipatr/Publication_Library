@@ -348,6 +348,7 @@ class TestDatabase(unittest.TestCase):
         self.assertEquals(db.degrees_of_separation("C","D"),1)
         self.assertEquals(db.degrees_of_separation("A","B"),0)
         self.assertEquals(db.degrees_of_separation("E","C"),2)
+        self.assertEquals(db.degrees_of_separation("A","F"),'X')
 
 if __name__ == '__main__':
     unittest.main()
