@@ -350,5 +350,10 @@ class TestDatabase(unittest.TestCase):
         self.assertEquals(db.degrees_of_separation("E","C"),2)
         self.assertEquals(db.degrees_of_separation("A","F"),'X')
 
+        self.assertTrue(db.read(path.join(self.data_dir, "dblp_curated_sample.xml")))
+        self.assertEquals(db.degrees_of_separation("Fang Siyuan","Intikhab Alam"),1)
+        self.assertEquals(db.degrees_of_separation("Stefano Ceri","Luis Gravano"),0)
+        
+
 if __name__ == '__main__':
     unittest.main()
