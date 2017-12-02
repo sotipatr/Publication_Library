@@ -145,6 +145,26 @@ def showStatsForAuthor():
     args["Sbooks"]=Sbooks
     return render_template("StatsForAuthor.html",args=args)
 
+@app.route("/degrees")
+def showDegrees():
+    dataset=app.config['DATASET']
+    db = app.config['DATABASE']
+    args = {"dataset":dataset, "id":"stats"}
+    authors= db.get_all_authors_names()
+
+
+    args["title"] = "Degrees of Separation"
+    author1 = str(request.args.get("author#1"))
+    author2 = str(request.args.get("author#2"))
+    degree = db.degrees_of_separation(author1,author2)
+    args["author1"]= author1
+    args["author2"] = author2
+    args["degree"] = degree
+    args["authors"] = authors
+    return render_template("degreesOfSeparation.html",args=args)
+
+
+
 @app.route("/authordetails")
 def showAuthorDetails():
     dataset=app.config['DATASET']

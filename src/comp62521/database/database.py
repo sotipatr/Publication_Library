@@ -64,7 +64,11 @@ class Database:
 
     def get_all_authors(self):
         return self.author_idx.keys()
-
+    def get_all_authors_names(self):
+        authors=[]
+        for i in self.authors:
+            authors.append(str(i.name))
+        return authors
     def calculate_first_last_sole(self):
         header = ("Author", "First Author",
                   "Last Author", "Sole Author")
