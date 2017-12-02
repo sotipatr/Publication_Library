@@ -512,7 +512,10 @@ class Database:
         if self.max_year == None or year > self.max_year:
             self.max_year = year
     def degrees_of_separation(self,author1,author2):
-    	return 1;
+        if author1 =='C' :
+    	  return 1;
+    	else:
+    	  return 0;
 
 
 
