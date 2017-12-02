@@ -546,7 +546,11 @@ class Database:
                   if edge not in visited or weight < visited[edge]:
                        visited[edge] = weight
                        path[edge] = min_node
-        return visited[author2]-1
+        
+        try:
+            return visited[author2]-1
+        except KeyError:
+        	return 'X'
 
 
 
