@@ -345,7 +345,7 @@ class TestDatabase(unittest.TestCase):
     def test_degrees_of_separation(self):
         db = database.Database()
         self.assertTrue(db.read(path.join(self.data_dir,"sprint4_task1.xml")))
-        self.assertEquals(db.test_degrees_of_separation("C","D"),1)
+        self.assertEquals(db.degrees_of_separation("C","D"),1)
 
 if __name__ == '__main__':
     unittest.main()
