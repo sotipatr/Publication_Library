@@ -3,7 +3,8 @@ import itertools
 import numpy as np
 from xml.sax import handler, make_parser, SAXException
 from operator import itemgetter
-
+import collections
+from heapq import *
 PublicationType = [
     "Conference Paper", "Journal", "Book", "Book Chapter"]
 
@@ -511,11 +512,41 @@ class Database:
             self.min_year = year
         if self.max_year == None or year > self.max_year:
             self.max_year = year
+
+    
     def degrees_of_separation(self,author1,author2):
-        if author1 =='C' :
-    	  return 1;
-    	else:
-    	  return 0;
+        #create graph   
+        edges=collections.defaultdict(list)
+        nodes=set()
+        for p in self.publications:
+            for a in range(len(p.authors)):
+            	nodes.add(str(self.authors[p.authors[a]].name))
+                for c in range(a+1,len(p.authors)):
+                    edges[str(self.authors[p.authors[a]].name)].append(str(self.authors[p.authors[c]].name))
+                    edges[str(self.authors[p.authors[c]].name)].append(str(self.authors[p.authors[a]].name))
+        visited = {author1: 0}
+        path = {}
+        
+        while nodes: 
+            min_node = None
+            for node in nodes:
+              if node in visited:
+                 if min_node is None:
+                    min_node = node
+                 elif visited[node] < visited[min_node]:
+                    min_node = node
+            if min_node is None:
+                 break
+
+            nodes.remove(min_node)
+            current_weight = visited[min_node]
+
+            for edge in edges[min_node]:
+                  weight = current_weight + 1
+                  if edge not in visited or weight < visited[edge]:
+                       visited[edge] = weight
+                       path[edge] = min_node
+        return visited[author2]-1
 
 
 
