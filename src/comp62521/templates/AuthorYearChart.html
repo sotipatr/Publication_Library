@@ -3,38 +3,33 @@
 {% block content %}
 
     <head>
-        <!-- 引入 echarts.js -->
         <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
 
 
     </head>
     <body>
-        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
         <div id="main" style="width: 100%;height:480%;"></div>
 
     </body>
     <script type="text/javascript">
-        //the arraylist select from database
         var test ={{args.data[1]}};
         var title ={{args.data[0]|tojson}};
-        //console.log(test);
         var a = echarts;
-        var names=[];    //名称数组（实际用来盛放X轴坐标值）
-        var nums=[];    //数量数组（实际用来盛放Y坐标值）
-        var types=[]; //折线数量(实际中存放的几条折线)
-         //TODO 对数组进行分割，每个数组的第一个数据作为年份，其余的数据作为填充折线图数据
-        //对总数据数组进行分割，将年份填充进横坐标
+        var names=[];
+        var nums=[];
+        var types=[];
+
         for(var i=0;i<test.length;i++){
             var arrTemp = test[i];
             names.push(arrTemp[0]);
         }
-        //对标题进行分割，将除了年份外的字段，作为折线数量统计
+
         for(var m=1;m<title.length;m++){
             var arrTemp3 = title[m];
             types.push(arrTemp3);
         }
         var myChart = a.init(document.getElementById('main'));
-         // 显示标题，图例和空的坐标轴
+
         var option = {
             title: {
                  text: 'line chart for Authors by Year',
@@ -48,9 +43,8 @@
                 feature : {
                     mark : {show: true},
                     dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar']},
-                    // restore : {show: true},
-                    // saveAsImage : {show: true}
+                    magicType : {show: true, type: ['line', 'bar']}
+
                 }
             },
             calculable : true,
@@ -70,7 +64,6 @@
                        margin: 8
 
                     },
-                    {#data : []#}
                     data : (function() {
                                         var icategory = [];
                                         for(var i=0, size=names.length; i<size; i++) {
@@ -90,18 +83,9 @@
             ]
 
          };
-         myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
-         myChart.hideLoading();    //隐藏加载动画
-                    {#myChart.setOption({        //加载数据图表
-                        xAxis: {
-                            data: names
-                        },
-                        series: [{
-                            // 根据名字对应到相应的系列
-                            name: 'num',
-                            data: nums
-                        }]
-                    });#}
+         myChart.showLoading();
+         myChart.hideLoading();
+
         window.onload=function () {
 
             var Item = function(){
@@ -113,30 +97,22 @@
                 };
             var Series = [];
             var data = [];
-            //折线数据填充
-            //根据折线显示名称
             for(var i=0;i < types.length;i++){
                 data = [];
-                //设置放到数据点上显示的文字
                 var it = new Item();
                 it.name = types[i]+" number is ";
-                //y轴数据
-                //根据x轴数组大小，将一个折线类型的数据放到一起
                  for(var j=0;j<names.length;j++){
                     var arrTemp2 = test[j];
                     data.push(arrTemp2[i+1]);
 
                 }
 
-{#                for(var j = 0; j<names.length; j++){#}
-{#                    data.push(nums[j]);#}
-{#                }#}
                 it.data = data;
                 Series.push(it);
             }
 
-            option.series = Series; // 设置图表
-            myChart.setOption(option);// 重新加载图表
+            option.series = Series;
+            myChart.setOption(option);
         };
     </script>
 {% endblock %}
