@@ -1,4 +1,6 @@
-<html>
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
     <head>
         <!-- 引入 echarts.js -->
         <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
@@ -8,7 +10,7 @@
     <body>
         <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
         <div style="overflow:scroll">
-        <div id="main" style="width: 1500%;height:100%;"></div></div>
+        <div id="main" style="width:1700%;height:480%;"></div></div>
 
     </body>
     <script type="text/javascript">
@@ -35,7 +37,7 @@
          // 显示标题，图例和空的坐标轴
         var option = {
             title: {
-                 text: 'Stats for Author Chart',
+                 text: 'line chart for Author\' stats',
 
             },
             tooltip : {
@@ -54,7 +56,7 @@
             calculable : true,
             grid:{
                 left:'0.5%',
-                bottom:'25%',
+                bottom:'30%',
                 right:'0.5%'
             },
 
@@ -145,3 +147,4 @@
             myChart.setOption(option);// 重新加载图表
         };
     </script>
+{% endblock %}
