@@ -113,10 +113,6 @@ def GraphForCoauthor():
     author_name = author[0]
 
     hdata, cdata = db.get_coauthor_data(0, 3000, 4)
-    #coauthor = cdata.split(",")
-    #coauthor_name = coauthor[0]
-    #print(coauthor_name)
-    # print(coauthor)
     coauthors=[]
 
     for i in cdata:
@@ -135,7 +131,6 @@ def GraphForCoauthor():
             co_list.append(temp[1].split("(")[0].strip())
         elif len(temp1) >1:
             co_list.append(temp1[0].split("(")[0].strip())
-    print(co_list)
 
     args["author"] = author_name
     args["title"] = "The Coauthors of " + author_name
