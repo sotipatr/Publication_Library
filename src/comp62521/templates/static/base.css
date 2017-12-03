@@ -1,0 +1,17 @@
+
+footer.navbar-default.navbar-fixed-bottom
+ {
+      background:#000000;
+      color:white;
+      bottom: 0;
+      
+ }
+ footer.navbar-default.navbar-fixed-bottom p
+ {
+      text-align: center;
+ }
+
+.jumbotron {
+    text-align: center;
+}
+

@@ -4,23 +4,330 @@
 {% block head %}
   {{ super() }}
 {% endblock %}
+<script>
+  function show(id) {
+   
+    document.getElementById(id).style.visibility = "visible";
+  }
+  function hide(id) {
+    document.getElementById(id).style.visibility = "hidden";
+  }
+  function fix_size(id1,id2) {
+  document.getElementById(id1).style.height = document.getElementById(id2).height;
+  }
+  
+  window.onload = function() {
+  
+  fix_size('div1', 'img1');
+  fix_size('div2', 'img2');
+  fix_size('div3', 'img3');
+  fix_size('div4', 'img4');
+ 
+};
+/***date form**/
+function show1(x)
+{
+  x.value="yyyy-mm-dd";
+}
 
+function hide1(x)
+{
+  x.value="";
+}
+</script>
 {% block content %}
-<ul>
-  <li><a href="/statisticsdetails/publication_summary">Publication Summary</a></li>
-  <li><a href="/statisticsdetails/publication_author">Publication by Author</a></li>
-  <li><a href="/statisticsdetails/publication_year">Publication by Year</a></li>
-  <li><a href="/statisticsdetails/author_year">Author by Year</a></li>
-  <li><a href="/averages">Averaged Year Data</a></li>
-  <li><a href="/coauthors">Co-Authors</a></li>
-  <li><a href="/stats">Stats for Author</a></li>
-  <li><a href="/searchAuthor">All available statistic for Author</a></li>
-  <li><a href="/authordetails">Authors' Publications by Type</a></li>
-  <li><a href="/searchPartName?first=1">Search authors by part name</a></li>
-  <li><a href="/degrees">Degrees of Separation</a></li>
-  <li><a href="/PubYearChart">Publication by Year chart</a></li>
-  <li><a href="/AuthorYearChart">Author by Year chart</a></li>
-  <li><a href="/PubAuthorChart">Publication by Author chart</a></li>
-  <li><a href="/StatsChart">Stats for Author chart</a></li>
-</ul>
+
+<!-- You are component -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <p>You are: Home</p>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- learn more component -->
+<div class="jumbotron">
+  <h1 text-align: center>Cartright project</h1>
+  <p>course comp62521</p>
+  <p><a class="btn btn-primary btn-lg" href="https://studentnet.cs.manchester.ac.uk/pgt/COMP62521/syllabus/" role="button">Learn more</a></p>
+</div>
+
+
+
+
+<div class="row">
+      <div class='tetrades'>
+          <!--<div class='content' style='width:100%;height:40px'>
+            <p class='titlos'>Publications</p> 
+          </div>-->
+          <div class="col-md-1">
+              <a href="/statisticsdetails/publication_summary" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div style = "width:100px">
+                    <header>
+                      <h3 class="text-nowrap">Publication Summary</h3>
+                    </header>
+                    <img id='img1' class='image_size' src="{{ url_for('static', filename = 'img2.png') }}" alt="Publication Summary" height="42" width="42" />
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/statisticsdetails/publication_author" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Publication by Author</h3>
+                    </header>
+                    <img id='img2' class='image_size' src="{{ url_for('static', filename = 'img2.png') }}" height="42" width="42"/>
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/statisticsdetails/publication_year" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Publication by Year</h3>
+                    </header>
+                    <img id='img3' class='image_size' src="{{ url_for('static', filename = 'img2.png') }}" height="42" width="42" />
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/averages" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Averaged Year Data</h3>
+                    </header>
+                    <img id='img4' class='image_size' src="{{ url_for('static', filename = 'img2.png') }}" height="42" width="42" />
+                  </div> 
+                </div>
+              </a>
+          </div>
+      </div>
+</div>
+
+<div class="row">
+      <div class='tetrades'>
+              <!--<div class='content' style='width:100%;height:40px'>
+                <p class='titlos'>Authors</p> 
+              </div>-->
+          <div class="col-md-1">
+              <a href="/statisticsdetails/author_year" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Author by Year</h3>
+                    </header>
+                    <img id='img1' class='image_size' src="{{ url_for('static', filename = 'img1.png') }}" alt="Publication Summary" height="42" width="42" />
+                  </div>
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/coauthors" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Co-Authors</h3>
+                    </header>
+                    <img id='img2' class='image_size' src="{{ url_for('static', filename = 'img1.png') }}" height="42" width="42" />
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+          
+          <div class="col-md-1">
+              <a href="/stats" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Stats for Author</h3>
+                    </header>
+                    <img id='img3' class='image_size' src="{{ url_for('static', filename = 'img1.png') }}" height="42" width="42" />
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+          
+          <div class="col-md-1">
+              <a href="/authordetails" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Publications by Type</h3>
+                    </header>
+                    <img id='img4' class='image_size' src="{{ url_for('static', filename = 'img1.png') }}" height="42" width="42" />
+                  </div>
+                </div>
+              </a>
+          </div>
+      </div>
+</div>
+
+<div class="row">
+      <div class='tetrades'>
+          <!--
+          <div class='content' style='width:100%;height:40px'>
+            <p class='titlos'>Line Charts</p> 
+          </div>-->
+          <div class="col-md-1">
+              <a href="/PubYearChart" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Publication by Year</h3>
+                    </header>
+                    <img id='img1' class='image_size' src="{{ url_for('static', filename = 'img2.png') }}" alt="Publication Summary" height="42" width="42" />
+                  </div>
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/AuthorYearChart" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Author by Year</h3>
+                    </header>
+                    <img id='img2' class='image_size' src="{{ url_for('static', filename = 'img2.png') }}" height="42" width="42" />
+                  </div>
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/PubAuthorChart" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Publication by Author</h3>
+                    </header>
+                    <img id='img3' class='image_size' src="{{ url_for('static', filename = 'img2.png') }}" height="42" width="42" />
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/StatsChart" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Stats for Author</h3>
+                    </header>
+                    <img id='img4' class='image_size' src="{{ url_for('static', filename = 'img2.png') }}" height="42" width="42" />
+                  </div>
+                </div>
+              </a>
+          </div>
+      </div>
+</div>
+
+
+<div class="row">
+      <div class='tetrades'>
+          <!--<div class='content' style='width:100%;height:40px'>
+            <p class='titlos'>Search for</p> 
+          </div>-->
+          <div class="col-md-1">
+              <a href="/searchAuthor" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Author's statistics</h3>
+                    </header>
+                    <img id='img1' class='image_size' src="{{ url_for('static', filename = 'img1.png') }}" alt="Publication Summary" height="42" width="42" />
+                  </div>
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/searchPartName?first=1" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Authors by part name</h3>
+                    </header>
+                    <img id='img2' class='image_size' src="{{ url_for('static', filename = 'img1.png') }}" height="42" width="42" />
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+
+          <div class="col-md-1">
+              <a href="/degrees" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap">Degree of Seperation</h3>
+                    </header>
+                    <img id='img4' class='image_size' src="{{ url_for('static', filename = 'img1.png') }}" height="42" width="42" />
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+      </div>
+</div>
+
+
+<div class="row">
+                <div class="col-md-1">
+              <a href="/degrees" style='text-decoration: none; color: black'>
+                <div id='t_item' class='content' onMouseOver=show('div1') onMouseOut=hide('div1')>
+                  <div>
+                    <header>
+                      <h3 class="text-nowrap"> </h3>
+                    </header>
+                    <img id='img4' class='image_size' src="{{ url_for('static', filename = 'white.png') }}" height="42" width="42" />
+                  </div>
+                  
+                </div>
+              </a>
+          </div>
+</div>
+
 {% endblock %}
