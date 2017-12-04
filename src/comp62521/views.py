@@ -102,42 +102,6 @@ def showSearchAuthor():
     args["last"]=last
     return render_template("searchAuthor.html",args=args)
 
-@app.route("/GraphForCoauthor")
-def GraphForCoauthor():
-    dataset = app.config['DATASET']
-    db = app.config['DATABASE']
-    args = {"dataset": dataset, "id": "stats"}
-
-    adata = str(request.args.get("author"))
-    author = adata.split("(")
-    author_name = author[0]
-
-    hdata, cdata = db.get_coauthor_data(0, 3000, 4)
-    coauthors=[]
-
-    for i in cdata:
-        author = i[0].split("(")[0].strip()
-        if str(author).strip() == str(author_name).strip():
-            coauthors.append(str(i[1]))
-
-    co = str(coauthors).split(", ")
-    co_list=[]
-    for author in co:
-        temp = author.split("['")
-        temp1 = author.split("']")
-        if len(temp) ==1:
-            co_list.append(author.split("(")[0].strip())
-        elif len(temp) >1:
-            co_list.append(temp[1].split("(")[0].strip())
-        elif len(temp1) >1:
-            co_list.append(temp1[0].split("(")[0].strip())
-
-    args["author"] = author_name
-    args["title"] = "The Coauthors of " + author_name
-    args["coauthor"] = co_list
-
-    return render_template('GraphForCoauthor.html',args=args)
-
 @app.route("/StatsForAuthor")
 def showStatsForAuthor():
     dataset=app.config['DATASET']

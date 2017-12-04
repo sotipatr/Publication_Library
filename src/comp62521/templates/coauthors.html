@@ -35,11 +35,7 @@ Publication type:
   {% for row in args.data[1] %}
     <tr>
     {% for data_item in row %}
-      {% if row[0]==data_item and args.title == "Co-Authors"%}
-        <td><center><a href="/GraphForCoauthor?author={{ row[0]}}">{{ data_item }}</a></center></td>
-      {% else %}
-        <td><center>{{ data_item }}</center></td>
-      {% endif %}
+      <td>{{ data_item }}</td>
     {% endfor %}
     </tr>
   {% endfor %}

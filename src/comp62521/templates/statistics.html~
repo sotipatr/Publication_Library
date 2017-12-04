@@ -6,15 +6,152 @@
 {% endblock %}
 
 {% block content %}
-<ul>
-  <li><a href="/statisticsdetails/publication_summary">Publication Summary</a></li>
-  <li><a href="/statisticsdetails/publication_author">Publication by Author</a></li>
-  <li><a href="/statisticsdetails/publication_year">Publication by Year</a></li>
-  <li><a href="/statisticsdetails/author_year">Author by Year</a></li>
-  <li><a href="/averages">Averaged Year Data</a></li>
-  <li><a href="/coauthors">Co-Authors</a></li>
-  <li><a href="/stats">Stats for Author</a></li>
-  <li><a href="/searchAuthor">All available statistic for Author</a></li>
-  <li><a href="/authordetails?first=1">Authors' Publications by Type</a></li>
-</ul>
+<!-- You are component -->
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <ul class="nav navbar-nav">
+      <li class="navbar-brand"><a href="#">Home>Pub</a></li>
+    </ul>
+  </div>
+</nav>
+<nav class="navbar navbar-default"   style="width:25%; align:left" >
+  <div class="container-fluid" style="text-align:left">
+    <div class="navbar-header" style="text-align:left">
+      <a class="navbar-brand" href="#" style="text-align:left">
+        <h4 style="text-align:left">Home</h4>
+      </a>
+    </div>
+  </div>
+</nav>
+<!-- learn more component -->
+<div class="jumbotron" style = "height:100px; padding-top: 0px; padding-bottom: 0px">
+  <h1 style="text-align:left; border-bottom:2px solid #ccc">Publication Repository</h1>
+  <h4 style="text-align:left">Click the pictures to start navigate...!</h4>
+</div>
+
+
+<div class='tetrades'>
+	
+		<div class="dropdown" style = "width:300px">
+			<header  style="padding-top: 0px">
+				<h1>Publications</h1>
+			</header>
+			
+			<button onclick="myFunction1()" class="dropbtn">
+				<img id='img1' class='image_size' src="{{ url_for('static', filename = 'pub.jpg') }}"/>
+			</button>
+			<div id="myDropdown1" class="dropdown-content" style = "width:262px; ">
+				
+	    			<a href="/statisticsdetails/publication_summary"><h4>Publication Summary</h4></a>
+	    			<a href="/statisticsdetails/publication_author"><h4>Publication by Author</h4></a>
+	    			<a href="/statisticsdetails/publication_year"><h4>Publication by Year</h4></a>
+	    			<a href="/averages"><h4>Averaged Year Data</h4></a>
+
+  			</div>
+		</div>
+
+<div class="dropdown" style = "width:300px">
+			<header  style="padding-top: 0px">
+				<h1>Authors</h1>
+			</header>
+			
+			<button onclick="myFunction2()" class="dropbtn">
+				<img id='img1' class='image_size' src="{{ url_for('static', filename = 'author.jpeg') }}"/>
+			</button>
+			<div id="myDropdown2" class="dropdown-content" style = "width:262px; ">
+				
+	    			<a href="/statisticsdetails/author_year"><h4>Author by Year</h4></a>
+	    			<a href="/coauthors"><h4>Co-Authors</h4></a>
+	    			<a href="/stats"><h4>Stats for Author</h4></a>
+	    			<a href="/authordetails"><h4>Authors' Publications by Type</h4></a>
+
+  			</div>
+		</div>
+
+<div class="dropdown" style = "width:300px">
+			<header  style="padding-top: 0px">
+				<h1>Search for</h1>
+			</header>
+			
+			<button onclick="myFunction3()" class="dropbtn">
+				<img id='img1' class='image_size' src="{{ url_for('static', filename = 'search.jpg') }}"/>
+			</button>
+			<div id="myDropdown3" class="dropdown-content" style = "width:262px; ">
+				
+	    			<a href="/searchAuthor"><h4>Author's statistics</h4></a>
+	    			<a href="/searchPartName?first=1"><h4>Authors by part name</h4></a>
+	    			<a href="/degrees"><h4>Degree of Seperation</h4></a>
+
+  			</div>
+		</div>
+
+<div class="dropdown" style = "width:300px">
+			<header  style="padding-top: 0px">
+				<h1>Line Charts</h1>
+			</header>
+			
+			<button onclick="myFunction4()" class="dropbtn">
+				<img id='img1' class='image_size' src="{{ url_for('static', filename = 'chart.png') }}"/>
+			</button>
+			<div id="myDropdown4" class="dropdown-content" style = "width:262px; ">
+				
+	    			<a href="/PubAuthorChart"><h4>Publication by Author</h4></a>
+	    			<a href="/AuthorYearChart"><h4>Author by  Year</h4></a>
+	    			<a href="/PubYearChart"><h4>Publication by Year</h4></a>
+	    			<a href="/StatsChart"><h4>Stats for Author</h4></a>
+
+  			</div>
+		</div>
+
+</div>
+
+<script>
+  function myFunction1() {
+    //document.getElementById("myDropdown1").classList.toggle("show");
+    document.getElementById("myDropdown1").style.display="block";
+    document.getElementById("myDropdown2").style.display="none";
+    document.getElementById("myDropdown3").style.display="none";
+    document.getElementById("myDropdown4").style.display="none";
+}
+
+  function myFunction2() {
+    //document.getElementById("myDropdown2").classList.toggle("show");
+    document.getElementById("myDropdown2").style.display="block";
+    document.getElementById("myDropdown1").style.display="none";
+    document.getElementById("myDropdown3").style.display="none";
+    document.getElementById("myDropdown4").style.display="none";
+}
+
+  function myFunction3() {
+    //document.getElementById("myDropdown3").classList.toggle("show");
+    document.getElementById("myDropdown3").style.display="block";
+    document.getElementById("myDropdown2").style.display="none";
+    document.getElementById("myDropdown1").style.display="none";
+    document.getElementById("myDropdown4").style.display="none";
+}
+
+  function myFunction4() {
+    //document.getElementById("myDropdown4").classList.toggle("show");
+    document.getElementById("myDropdown4").style.display="block";
+    document.getElementById("myDropdown2").style.display="none";
+    document.getElementById("myDropdown3").style.display="none";
+    document.getElementById("myDropdown1").style.display="none";
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    document.getElementById("myDropdown4").style.display="none";
+    document.getElementById("myDropdown2").style.display="none";
+    document.getElementById("myDropdown3").style.display="none";
+    document.getElementById("myDropdown1").style.display="none";
+
+  }
+};
+
+</script>
+
 {% endblock %}
