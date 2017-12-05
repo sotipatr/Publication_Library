@@ -100,6 +100,7 @@ def showSearchAuthor():
     args["coauthors"]=coauthors
     args["first"]=first
     args["last"]=last
+    args["author"]=author
     return render_template("searchAuthor.html",args=args)
 
 @app.route("/StatsForAuthor")

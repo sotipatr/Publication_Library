@@ -8,6 +8,9 @@
 	Author Name:<br>
 	<input type="text" name="author">
 	<input type="submit" value="Submit">
+  <br>
+  <h4>Type an author's name to receive link to his/hers statistics</h4>
+  <br>
    {% if args.first!="1" and args.flag_none == "0" %}
      <table>
       <thead>
@@ -30,7 +33,7 @@
       </thead>
     </table>
    {% elif args.flag_none == "1" %}
-	<h3><center>No authror name match found for this part of name!<br>Please provide a new one.</center></h3>
+	<h3><center>No author name match found for this part of name!<br>Please provide a new one.</center></h3>
    {% endif %}
    {% if args.onlyOne=="1" %}
 	<meta http-equiv="refresh" content="0.000; url=/StatsForAuthor?author={{args.authors}}">

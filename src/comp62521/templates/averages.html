@@ -5,20 +5,26 @@
 {% set j=0 %}
 {% for table in args.tables %}
 <h2>{{ table.title }}</h2>
-<table cellspacing="10">
+<table cellspacing="20">
+  
   <thead>
+    <col width="130">
     <tr>
       {% set i=0 %}
       {% for column in table.header %}
-        <th><center> <a href="/averages?col={{i}}&table={{j}}">{{ column }}</a></center> </th>
+      
+        <th><center> <a href="/averages?col={{i}}&table={{j}}"> {{ column }}</a></center> </th>
         {% set i=i+1 %}
       {% endfor %}
     </tr>
   </thead>
   <tbody>
-    {% for row in table.rows %}    
+    <col width="130">
+    {% for row in table.rows %} 
+    <col width="130">   
       <tr>
         {% for data_item in row %}
+
           <td><center> {{ data_item }}</center> </td>
         {% endfor %}
       </tr>

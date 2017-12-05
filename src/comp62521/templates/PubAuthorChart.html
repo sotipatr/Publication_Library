@@ -3,7 +3,7 @@
 {% block content %}
     <head>
         <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
-
+    <h1>Publication by author Chart</h1>
 
     </head>
     <body>
@@ -29,7 +29,8 @@
         var myChart = a.init(document.getElementById('main'));
         var option = {
             title: {
-                 text: 'line chart for Publication by Author'
+                 
+                 text: 'Hover over the chart to get more detailed information'
 
             },
             tooltip : {

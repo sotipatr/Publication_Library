@@ -3,7 +3,8 @@
 {% block content %}
 <h1>{{ args.title }}</h1>
 
-<h3>Choose 2 authors to find their degree of separaction</h3>
+<h3>Choose 2 authors to find their degree of separation</h3>
+
 <form name="input" action="/degrees" method="get" data-ajax="false" onSubmit="validateForm(this)">
 
 <SELECT NAME="author#1">
@@ -21,12 +22,16 @@
 </SELECT>
 <br><br> 
   <input type="submit">
-</form>
+<br>
+<h4>Choose 2 authors to show their degree of separation. </h4>
+<h4>The degree of separation is calculated by the number of authors between the first author and the second.</h4>
+<br>
 
+</form>
+</br>
 {% if args.author1 != "None" and args.author2 != "None" and args.degree != -1 %}
-<a>{{args.author1}}</a>
-<a>{{args.author2}}</a>
-<a>{{args.degree}}</a>
+<h4> The degrees of separation between {{args.author1}} and {{args.author2}} is {{args.degree}} </h4>
+
 {% endif %}
 
 <script>

@@ -2,23 +2,26 @@
 {% block title %}{{ args.title }}{% endblock %}
 {% block content %}
 
-<h1>{{ args.title }}</h1>
+<h1>{{ args.title }} : {{args.author}}</h1>
 <form action="/searchAuthor" method="get" data-ajax="false" onSubmit="validateForm(this)">
 	Author Name:<br>
 	<input type="text" name="author">
 	<input type="submit" value="Submit">
-
+     <br/>
+     <h4>Type an author's name in the box above to receive information below</h4>
+     <br/>
      <table>
     	<thead>
+            <col width="200">
     		<tr>
-    			<th>Number of publications</th>
-    			<th>Number of conference papers</th>
-    			<th>Number of journals</th>
-    			<th>Number of book chapters</th>
-    			<th>Number of books</th>
-    			<th>Number of co-authors</th>
-    			<th>First author</th>
-    			<th>Last Author</th>
+    			<th>Number of publications  &ensp;  </th>
+    			<th>Number of conference papers &ensp;   </th>
+    			<th>Number of journals &ensp;   </th>
+    			<th>Number of book chapters  &ensp;  </th>
+    			<th>Number of books   &ensp; </th>
+    			<th>Number of co-authors  &ensp;  </th>
+    			<th>First author   &ensp; </th>
+    			<th>Last Author   &ensp; </th>
     		</tr>
     	
     		<tr> <td><center>{{args.publications}} </center></td>
