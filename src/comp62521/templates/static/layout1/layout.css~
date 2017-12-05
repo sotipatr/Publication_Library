@@ -20,7 +20,7 @@ background:#ECECE8;
 
 /* ----------------------------------------------Header-onomasia tou site ------------------------------------- */
 #header{display:block; position:relative; width:30%; margin:0;}
-#header h1{list-style:none; line-height:normal; background: 0 none;color:#ACACAA;;font-size:18px;font-family:courier;text-align:center;}
+#header h1{list-style:none; line-height:normal; background: 0 none;color:#ACACAA;font-size:18px;font-family:courier;text-align:center;}
 #header h1 strong{font-weight:normal; color:#000000; background-color:#FFFFFF;font-size: 30px;}
 
 
@@ -48,7 +48,7 @@ div.tetrades{
 	padding-top: 0px;
 	margin-left: 20px;
     margin-right: 0px;
-	height:600px;
+	height:700px;
 }
 
 div.border{
